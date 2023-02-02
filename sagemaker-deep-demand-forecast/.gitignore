@@ -1,0 +1,10 @@
+.vscode
+.ipynb_checkpoints
+.mypy*
+*.pyc
+__pycache__
+build
+output
+site-packages
+stack_outputs.json
+docs/*.py
