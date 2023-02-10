@@ -1,8 +1,13 @@
 import base64
 import torch
+from PIL import Image
 from io import BytesIO
 from diffusers import EulerDiscreteScheduler, StableDiffusionInpaintPipeline
 
+def decode_base64(base64_string):
+    decoded_string = BytesIO(base64.b64decode(base64_string))
+    img = Image.open(decoded_string)
+    return img
 
 def model_fn(model_dir):
     # Load stable diffusion and move it to the GPU
@@ -13,7 +18,7 @@ def model_fn(model_dir):
                                                    torch_dtype=torch.float16)
     pipe = pipe.to("cuda")
     pipe.enable_xformers_memory_efficient_attention()
-    pipe.enable_attention_slicing()
+    #pipe.enable_attention_slicing()
 
     return pipe
 
@@ -22,6 +27,8 @@ def predict_fn(data, pipe):
 
     # get prompt & parameters
     prompt = data.pop("inputs", data)
+    
+    # Require json string input. Inference to convert imge to string.
     input_img = data.pop("input_img", data)
     mask_img = data.pop("mask_img", data)
     # set valid HP for stable diffusion
@@ -29,12 +36,13 @@ def predict_fn(data, pipe):
     guidance_scale = data.pop("guidance_scale", 6.5)
     num_images_per_prompt = data.pop("num_images_per_prompt", 2)
     image_length = data.pop("image_length", 512)
+    
 
     # run generation with parameters
     generated_images = pipe(
         prompt,
-        image = input_img,
-        mask_image = mask_img,
+        image = decode_base64(input_img),
+        mask_image = decode_base64(mask_img),
         num_inference_steps=num_inference_steps,
         guidance_scale=guidance_scale,
         num_images_per_prompt=num_images_per_prompt,
@@ -42,6 +50,7 @@ def predict_fn(data, pipe):
         width=image_length,
     #)["images"] # for Stabel Diffusion v1.x
     ).images
+
 
     # create response
     encoded_images = []
