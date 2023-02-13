@@ -1,0 +1,1001 @@
+existingchecking,duration,creditamount,savings,employmentsince,status_sex,age,housing,existingcredits,job,dependents,risk
+none,6,1169,unknown,7+ years,male:single,67,own,2,skilled employee / official,1,low risk
+little,48,5951,little,1 to 4 years,female:divorced/separated/married,22,own,1,skilled employee / official,1,high risk
+no account,12,2096,little,4 to 7 years,male:single,49,own,1,unskilled,2,low risk
+none,42,7882,little,4 to 7 years,male:single,45,for free,1,skilled employee / official,2,low risk
+none,24,4870,little,1 to 4 years,male:single,53,for free,2,skilled employee / official,2,high risk
+no account,36,9055,unknown,1 to 4 years,male:single,35,for free,1,unskilled,2,low risk
+no account,24,2835,high,7+ years,male:single,53,own,1,skilled employee / official,1,low risk
+little,36,6948,little,1 to 4 years,male:single,35,rent,1,management / highly skilled,1,low risk
+no account,12,3059,very high,4 to 7 years,male:divorced/separated,61,own,1,unskilled,1,low risk
+little,30,5234,little,unemployed,male:married/widowed,28,own,2,management / highly skilled,1,high risk
+little,12,1295,little,1 year,female:divorced/separated/married,25,rent,1,skilled employee / official,1,high risk
+none,48,4308,little,1 year,female:divorced/separated/married,24,rent,1,skilled employee / official,1,high risk
+little,12,1567,little,1 to 4 years,female:divorced/separated/married,22,own,1,skilled employee / official,1,low risk
+none,24,1199,little,7+ years,male:single,60,own,2,unskilled,1,high risk
+none,15,1403,little,1 to 4 years,female:divorced/separated/married,28,rent,1,skilled employee / official,1,low risk
+none,24,1282,moderate,1 to 4 years,female:divorced/separated/married,32,own,1,unskilled,1,high risk
+no account,24,2424,unknown,7+ years,male:single,53,own,2,skilled employee / official,1,low risk
+none,30,8072,unknown,1 year,male:single,25,own,3,skilled employee / official,1,low risk
+little,24,12579,little,7+ years,female:divorced/separated/married,44,for free,1,management / highly skilled,1,high risk
+no account,24,3430,high,7+ years,male:single,31,own,1,skilled employee / official,2,low risk
+no account,9,2134,little,1 to 4 years,male:single,48,own,3,skilled employee / official,1,low risk
+none,6,2647,high,1 to 4 years,male:single,44,rent,1,skilled employee / official,2,low risk
+none,10,2241,little,1 year,male:single,48,rent,2,unskilled,2,low risk
+little,12,1804,moderate,1 year,male:single,44,own,1,skilled employee / official,1,low risk
+no account,10,2069,unknown,1 to 4 years,male:married/widowed,26,own,2,skilled employee / official,1,low risk
+none,6,1374,little,1 to 4 years,male:single,36,own,1,unskilled,1,low risk
+no account,6,426,little,7+ years,male:married/widowed,39,own,1,unskilled,1,low risk
+moderate,12,409,very high,1 to 4 years,female:divorced/separated/married,42,rent,2,skilled employee / official,1,low risk
+little,7,2415,little,1 to 4 years,male:single,34,own,1,skilled employee / official,1,low risk
+none,60,6836,little,7+ years,male:single,63,own,2,skilled employee / official,1,high risk
+little,18,1913,very high,1 year,male:married/widowed,36,own,1,skilled employee / official,1,low risk
+none,24,4020,little,1 to 4 years,male:single,27,own,1,skilled employee / official,1,low risk
+little,18,5866,moderate,1 to 4 years,male:single,30,own,2,skilled employee / official,1,low risk
+no account,12,1264,unknown,7+ years,male:single,57,rent,1,unskilled,1,low risk
+moderate,12,1474,little,1 year,female:divorced/separated/married,33,own,1,management / highly skilled,1,low risk
+little,45,4746,little,1 year,male:single,25,own,2,unskilled,1,high risk
+no account,48,6110,little,1 to 4 years,male:single,31,for free,1,skilled employee / official,1,low risk
+moderate,18,2100,little,1 to 4 years,male:single,37,own,1,skilled employee / official,1,high risk
+moderate,10,1225,little,1 to 4 years,male:single,37,own,1,skilled employee / official,1,low risk
+little,9,458,little,1 to 4 years,male:single,24,own,1,skilled employee / official,1,low risk
+no account,30,2333,high,7+ years,male:single,30,own,1,management / highly skilled,1,low risk
+little,12,1158,high,1 to 4 years,male:divorced/separated,26,own,1,skilled employee / official,1,low risk
+little,18,6204,little,1 to 4 years,male:single,44,own,1,unskilled,2,low risk
+none,30,6187,moderate,4 to 7 years,male:married/widowed,24,rent,2,skilled employee / official,1,low risk
+none,48,6143,little,7+ years,female:divorced/separated/married,58,for free,2,unskilled,1,high risk
+no account,11,1393,little,1 year,female:divorced/separated/married,35,own,2,management / highly skilled,1,low risk
+no account,36,2299,high,7+ years,male:single,39,own,1,skilled employee / official,1,low risk
+none,6,1352,high,unemployed,female:divorced/separated/married,23,rent,1,unemployed,1,low risk
+no account,11,7228,little,1 to 4 years,male:single,39,own,2,unskilled,1,low risk
+no account,12,2073,moderate,1 to 4 years,female:divorced/separated/married,28,own,1,skilled employee / official,1,low risk
+little,24,2333,unknown,1 year,male:single,29,own,1,unskilled,1,low risk
+little,27,5965,little,7+ years,male:single,30,own,2,management / highly skilled,1,low risk
+no account,12,1262,little,1 to 4 years,male:single,25,own,1,skilled employee / official,1,low risk
+no account,18,3378,unknown,1 to 4 years,male:single,31,own,1,skilled employee / official,1,low risk
+little,36,2225,little,7+ years,male:single,57,for free,2,skilled employee / official,1,high risk
+no account,6,783,unknown,1 to 4 years,male:single,26,own,1,unskilled,2,low risk
+little,12,6468,unknown,unemployed,male:single,52,own,1,management / highly skilled,1,high risk
+no account,36,9566,little,1 to 4 years,female:divorced/separated/married,31,own,2,skilled employee / official,1,low risk
+moderate,18,1961,little,7+ years,female:divorced/separated/married,23,own,1,management / highly skilled,1,low risk
+none,36,6229,little,1 year,female:divorced/separated/married,23,rent,2,unskilled,1,high risk
+little,9,1391,little,1 to 4 years,male:married/widowed,27,own,1,skilled employee / official,1,low risk
+little,15,1537,unknown,7+ years,male:single,50,own,2,skilled employee / official,1,low risk
+little,36,1953,little,7+ years,male:single,61,for free,1,management / highly skilled,1,high risk
+little,48,14421,little,1 to 4 years,male:single,25,own,1,skilled employee / official,1,high risk
+no account,24,3181,little,1 year,female:divorced/separated/married,26,own,1,skilled employee / official,1,low risk
+no account,27,5190,unknown,7+ years,male:single,48,own,4,skilled employee / official,2,low risk
+no account,12,2171,little,1 year,female:divorced/separated/married,29,own,1,skilled employee / official,1,low risk
+little,12,1007,very high,1 to 4 years,male:married/widowed,22,own,1,skilled employee / official,1,low risk
+no account,36,1819,little,1 to 4 years,male:single,37,for free,1,skilled employee / official,1,high risk
+no account,36,2394,unknown,1 to 4 years,female:divorced/separated/married,25,own,1,skilled employee / official,1,low risk
+no account,36,8133,little,1 to 4 years,female:divorced/separated/married,30,own,1,skilled employee / official,1,low risk
+no account,7,730,unknown,7+ years,male:single,46,rent,2,unskilled,1,low risk
+none,8,1164,little,7+ years,male:single,51,for free,2,management / highly skilled,2,low risk
+little,42,5954,little,4 to 7 years,female:divorced/separated/married,41,own,2,unskilled,1,low risk
+none,36,1977,unknown,7+ years,male:single,40,own,1,management / highly skilled,1,high risk
+none,12,1526,little,7+ years,male:single,66,for free,2,management / highly skilled,1,low risk
+none,42,3965,little,1 year,male:single,34,own,1,skilled employee / official,1,high risk
+little,11,4771,little,4 to 7 years,male:single,51,own,1,skilled employee / official,1,low risk
+no account,54,9436,unknown,1 to 4 years,male:single,39,own,1,unskilled,2,low risk
+little,30,3832,little,1 year,male:married/widowed,22,own,1,skilled employee / official,1,low risk
+no account,24,5943,unknown,1 year,female:divorced/separated/married,44,own,2,skilled employee / official,1,high risk
+no account,15,1213,high,7+ years,male:single,47,own,1,skilled employee / official,1,low risk
+no account,18,1568,moderate,1 to 4 years,female:divorced/separated/married,24,rent,1,unskilled,1,low risk
+none,24,1755,little,7+ years,female:divorced/separated/married,58,own,1,unskilled,1,low risk
+none,10,2315,little,7+ years,male:single,52,own,1,unskilled,1,low risk
+no account,12,1412,little,1 to 4 years,female:divorced/separated/married,29,own,2,management / highly skilled,1,low risk
+little,18,1295,little,1 year,female:divorced/separated/married,27,own,2,skilled employee / official,1,low risk
+little,36,12612,moderate,1 to 4 years,male:single,47,for free,1,skilled employee / official,2,high risk
+none,18,2249,moderate,4 to 7 years,male:single,30,own,1,management / highly skilled,2,low risk
+none,12,1108,little,4 to 7 years,male:single,28,own,2,skilled employee / official,1,high risk
+no account,12,618,little,7+ years,male:single,56,own,1,skilled employee / official,1,low risk
+none,12,1409,little,7+ years,male:single,54,own,1,skilled employee / official,1,low risk
+no account,12,797,unknown,7+ years,female:divorced/separated/married,33,own,1,unskilled,2,high risk
+moderate,24,3617,unknown,7+ years,male:single,20,rent,2,skilled employee / official,1,low risk
+little,12,1318,very high,7+ years,male:single,54,own,1,skilled employee / official,1,low risk
+little,54,15945,little,1 year,male:single,58,rent,1,skilled employee / official,1,high risk
+no account,12,2012,unknown,4 to 7 years,female:divorced/separated/married,61,own,1,skilled employee / official,1,low risk
+little,18,2622,moderate,1 to 4 years,male:single,34,own,1,skilled employee / official,1,low risk
+little,36,2337,little,7+ years,male:single,36,own,1,skilled employee / official,1,low risk
+little,20,7057,unknown,4 to 7 years,male:single,36,rent,2,management / highly skilled,2,low risk
+no account,24,1469,moderate,7+ years,male:married/widowed,41,rent,1,unskilled,1,low risk
+little,36,2323,little,4 to 7 years,male:single,24,rent,1,skilled employee / official,1,low risk
+no account,6,932,little,1 to 4 years,female:divorced/separated/married,24,own,1,skilled employee / official,1,low risk
+little,9,1919,little,4 to 7 years,male:single,35,rent,1,skilled employee / official,1,low risk
+no account,12,2445,unknown,1 year,male:married/widowed,26,rent,1,skilled employee / official,1,low risk
+little,24,11938,little,1 to 4 years,male:single,39,own,2,management / highly skilled,2,high risk
+no account,18,6458,little,7+ years,male:single,39,own,2,management / highly skilled,2,high risk
+little,12,6078,little,4 to 7 years,male:single,32,own,1,skilled employee / official,1,low risk
+none,24,7721,unknown,1 year,female:divorced/separated/married,30,own,1,skilled employee / official,1,low risk
+little,14,1410,high,7+ years,male:married/widowed,35,own,1,skilled employee / official,1,low risk
+little,6,1449,moderate,7+ years,male:divorced/separated,31,own,2,skilled employee / official,2,low risk
+moderate,15,392,little,1 year,female:divorced/separated/married,23,rent,1,skilled employee / official,1,low risk
+little,18,6260,little,4 to 7 years,male:single,28,rent,1,unskilled,1,low risk
+no account,36,7855,little,1 to 4 years,female:divorced/separated/married,25,own,2,skilled employee / official,1,high risk
+none,12,1680,high,7+ years,male:married/widowed,35,own,1,skilled employee / official,1,low risk
+no account,48,3578,unknown,7+ years,male:single,47,own,1,skilled employee / official,1,low risk
+none,42,7174,unknown,4 to 7 years,female:divorced/separated/married,30,own,1,management / highly skilled,1,high risk
+none,10,2132,unknown,1 year,female:divorced/separated/married,27,rent,2,skilled employee / official,1,low risk
+none,33,4281,high,1 to 4 years,female:divorced/separated/married,23,own,2,skilled employee / official,1,high risk
+little,12,2366,high,4 to 7 years,male:divorced/separated,36,own,1,management / highly skilled,1,low risk
+none,21,1835,little,1 to 4 years,female:divorced/separated/married,25,own,2,skilled employee / official,1,high risk
+no account,24,3868,little,7+ years,female:divorced/separated/married,41,rent,2,management / highly skilled,1,low risk
+no account,12,1768,little,1 to 4 years,male:single,24,rent,1,unskilled,1,low risk
+moderate,10,781,little,7+ years,male:single,63,for free,2,skilled employee / official,1,low risk
+little,18,1924,unknown,1 year,female:divorced/separated/married,27,rent,1,skilled employee / official,1,high risk
+none,12,2121,little,1 to 4 years,male:single,30,own,2,skilled employee / official,1,low risk
+none,12,701,little,1 to 4 years,male:married/widowed,40,own,1,unskilled,1,low risk
+little,12,639,little,1 to 4 years,male:single,30,own,1,skilled employee / official,1,high risk
+little,12,1860,little,unemployed,male:single,34,own,2,management / highly skilled,1,low risk
+none,12,3499,little,1 to 4 years,female:divorced/separated/married,29,own,2,skilled employee / official,1,high risk
+little,48,8487,unknown,4 to 7 years,female:divorced/separated/married,24,own,1,skilled employee / official,1,low risk
+none,36,6887,little,1 to 4 years,male:single,29,own,1,skilled employee / official,1,high risk
+no account,15,2708,little,1 year,male:single,27,own,2,unskilled,1,low risk
+no account,18,1984,little,1 to 4 years,male:single,47,for free,2,skilled employee / official,1,low risk
+no account,60,10144,moderate,4 to 7 years,female:divorced/separated/married,21,own,1,skilled employee / official,1,low risk
+no account,12,1240,unknown,7+ years,female:divorced/separated/married,38,own,2,skilled employee / official,1,low risk
+no account,27,8613,very high,1 to 4 years,male:single,27,own,2,skilled employee / official,1,low risk
+little,12,766,high,1 to 4 years,male:single,66,own,1,unskilled,1,high risk
+little,15,2728,unknown,4 to 7 years,male:single,35,own,3,skilled employee / official,1,low risk
+moderate,12,1881,little,1 to 4 years,female:divorced/separated/married,44,rent,1,unskilled,1,low risk
+moderate,6,709,very high,1 year,male:married/widowed,27,own,1,unemployed,1,low risk
+little,36,4795,little,1 year,female:divorced/separated/married,30,own,1,management / highly skilled,1,low risk
+none,27,3416,little,1 to 4 years,male:single,27,own,1,management / highly skilled,1,low risk
+none,18,2462,little,1 to 4 years,male:single,22,own,1,skilled employee / official,1,high risk
+no account,21,2288,little,1 year,female:divorced/separated/married,23,own,1,skilled employee / official,1,low risk
+little,48,3566,moderate,4 to 7 years,male:single,30,own,1,skilled employee / official,1,low risk
+none,6,860,little,7+ years,female:divorced/separated/married,39,own,2,skilled employee / official,1,low risk
+no account,12,682,moderate,4 to 7 years,female:divorced/separated/married,51,own,2,skilled employee / official,1,low risk
+none,36,5371,little,1 to 4 years,male:single,28,own,2,skilled employee / official,1,low risk
+no account,18,1582,very high,7+ years,male:single,46,own,2,skilled employee / official,1,low risk
+no account,6,1346,moderate,7+ years,male:single,42,for free,1,skilled employee / official,2,low risk
+no account,10,1924,little,1 to 4 years,male:single,38,own,1,skilled employee / official,1,low risk
+moderate,36,5848,little,1 to 4 years,male:single,24,own,1,skilled employee / official,1,low risk
+little,24,7758,very high,7+ years,female:divorced/separated/married,29,rent,1,skilled employee / official,1,low risk
+little,24,6967,moderate,4 to 7 years,male:single,36,rent,1,management / highly skilled,1,low risk
+none,12,1282,little,1 to 4 years,female:divorced/separated/married,20,rent,1,skilled employee / official,1,high risk
+none,9,1288,moderate,7+ years,male:single,48,own,2,skilled employee / official,2,low risk
+none,12,339,little,7+ years,male:married/widowed,45,own,1,unskilled,1,low risk
+little,24,3512,moderate,4 to 7 years,male:single,38,own,2,skilled employee / official,1,low risk
+no account,6,1898,unknown,1 to 4 years,male:single,34,own,2,unskilled,2,low risk
+no account,24,2872,moderate,7+ years,male:single,36,own,1,skilled employee / official,2,low risk
+no account,18,1055,little,1 year,female:divorced/separated/married,30,own,2,skilled employee / official,1,low risk
+no account,15,1262,high,4 to 7 years,male:single,36,own,2,skilled employee / official,1,low risk
+little,10,7308,little,unemployed,male:single,70,for free,1,management / highly skilled,1,low risk
+no account,36,909,high,7+ years,male:single,36,own,1,skilled employee / official,1,low risk
+no account,6,2978,high,1 to 4 years,male:single,32,own,1,skilled employee / official,1,low risk
+none,18,1131,little,unemployed,female:divorced/separated/married,33,own,1,skilled employee / official,1,high risk
+little,11,1577,very high,1 year,female:divorced/separated/married,20,own,1,skilled employee / official,1,low risk
+no account,24,3972,little,4 to 7 years,female:divorced/separated/married,25,rent,1,skilled employee / official,1,low risk
+little,24,1935,little,7+ years,male:divorced/separated,31,own,2,skilled employee / official,1,high risk
+none,15,950,little,7+ years,male:single,33,rent,2,skilled employee / official,2,high risk
+no account,12,763,little,1 to 4 years,female:divorced/separated/married,26,own,1,skilled employee / official,1,low risk
+little,24,2064,little,unemployed,female:divorced/separated/married,34,own,1,management / highly skilled,1,high risk
+little,8,1414,little,1 to 4 years,male:single,33,own,1,skilled employee / official,1,low risk
+none,21,3414,little,1 year,male:single,26,own,2,skilled employee / official,1,high risk
+no account,30,7485,unknown,unemployed,female:divorced/separated/married,53,own,1,management / highly skilled,1,high risk
+none,12,2577,little,1 to 4 years,male:divorced/separated,42,own,1,skilled employee / official,1,low risk
+none,6,338,high,7+ years,male:single,52,own,2,skilled employee / official,1,low risk
+no account,12,1963,little,4 to 7 years,male:single,31,rent,2,management / highly skilled,2,low risk
+none,21,571,little,7+ years,male:single,65,own,2,skilled employee / official,1,low risk
+no account,36,9572,little,1 year,male:divorced/separated,28,own,2,skilled employee / official,1,high risk
+little,36,4455,little,1 to 4 years,male:divorced/separated,30,own,2,management / highly skilled,1,high risk
+none,21,1647,unknown,1 to 4 years,male:single,40,own,2,unskilled,2,high risk
+no account,24,3777,very high,1 to 4 years,male:single,50,own,1,skilled employee / official,1,low risk
+little,18,884,little,7+ years,male:single,36,own,1,skilled employee / official,2,high risk
+no account,15,1360,little,1 to 4 years,male:single,31,own,2,skilled employee / official,1,low risk
+little,9,5129,little,7+ years,female:divorced/separated/married,74,for free,1,management / highly skilled,2,high risk
+little,16,1175,little,unemployed,male:single,68,for free,3,unemployed,1,low risk
+none,12,674,moderate,4 to 7 years,male:married/widowed,20,own,1,skilled employee / official,1,high risk
+little,18,3244,little,1 to 4 years,female:divorced/separated/married,33,own,2,skilled employee / official,1,low risk
+no account,24,4591,very high,1 to 4 years,male:single,54,own,3,management / highly skilled,1,high risk
+little,48,3844,moderate,4 to 7 years,male:single,34,for free,1,unskilled,2,high risk
+little,27,3915,little,1 to 4 years,male:single,36,own,1,skilled employee / official,2,high risk
+no account,6,2108,little,4 to 7 years,male:married/widowed,29,rent,1,skilled employee / official,1,low risk
+little,45,3031,moderate,1 to 4 years,male:single,21,rent,1,skilled employee / official,1,high risk
+little,9,1501,little,7+ years,female:divorced/separated/married,34,own,2,management / highly skilled,1,high risk
+no account,6,1382,little,1 to 4 years,female:divorced/separated/married,28,own,2,skilled employee / official,1,low risk
+little,12,951,moderate,1 year,female:divorced/separated/married,27,rent,4,skilled employee / official,1,high risk
+little,24,2760,unknown,7+ years,male:single,36,for free,1,skilled employee / official,1,low risk
+little,18,4297,little,7+ years,male:divorced/separated,40,own,1,management / highly skilled,1,high risk
+no account,9,936,high,7+ years,male:single,52,own,2,skilled employee / official,1,low risk
+none,12,1168,little,1 to 4 years,male:married/widowed,27,own,1,unskilled,1,low risk
+no account,27,5117,little,4 to 7 years,male:single,26,own,2,skilled employee / official,1,low risk
+none,12,902,little,4 to 7 years,male:married/widowed,21,rent,1,skilled employee / official,1,high risk
+no account,12,1495,little,7+ years,male:single,38,own,2,unskilled,2,low risk
+none,30,10623,little,7+ years,male:single,38,for free,3,management / highly skilled,2,low risk
+no account,12,1935,little,7+ years,male:single,43,own,3,skilled employee / official,1,low risk
+little,12,1424,little,4 to 7 years,male:single,26,own,1,skilled employee / official,1,low risk
+none,24,6568,little,1 to 4 years,male:married/widowed,21,own,1,unskilled,1,low risk
+no account,12,1413,very high,4 to 7 years,male:single,55,own,1,skilled employee / official,1,low risk
+no account,9,3074,unknown,1 to 4 years,male:single,33,own,2,skilled employee / official,2,low risk
+no account,36,3835,unknown,7+ years,female:divorced/separated/married,45,own,1,unskilled,1,low risk
+none,27,5293,little,unemployed,male:single,50,own,2,skilled employee / official,1,high risk
+moderate,30,1908,little,7+ years,male:single,66,own,1,management / highly skilled,1,high risk
+no account,36,3342,unknown,7+ years,male:single,51,own,1,skilled employee / official,1,low risk
+little,6,932,unknown,4 to 7 years,female:divorced/separated/married,39,own,2,unskilled,1,low risk
+none,18,3104,little,4 to 7 years,male:single,31,own,1,skilled employee / official,1,low risk
+moderate,36,3913,little,1 to 4 years,male:single,23,own,1,skilled employee / official,1,low risk
+none,24,3021,little,1 to 4 years,male:divorced/separated,24,rent,1,unskilled,1,low risk
+no account,10,1364,little,1 to 4 years,female:divorced/separated/married,64,own,1,skilled employee / official,1,low risk
+little,12,625,little,1 year,male:married/widowed,26,own,1,unskilled,1,low risk
+none,12,1200,unknown,1 to 4 years,female:divorced/separated/married,23,rent,1,skilled employee / official,1,low risk
+no account,12,707,little,1 to 4 years,male:single,30,own,2,skilled employee / official,1,low risk
+no account,24,2978,unknown,1 to 4 years,male:single,32,own,2,skilled employee / official,2,low risk
+no account,15,4657,little,1 to 4 years,male:single,30,own,1,skilled employee / official,1,low risk
+no account,36,2613,little,1 to 4 years,male:single,27,own,2,skilled employee / official,1,low risk
+little,48,10961,very high,4 to 7 years,male:single,27,own,2,skilled employee / official,1,high risk
+none,12,7865,little,7+ years,male:single,53,for free,1,management / highly skilled,1,high risk
+no account,9,1478,little,4 to 7 years,male:single,22,own,1,skilled employee / official,1,high risk
+none,24,3149,little,1 year,male:single,22,for free,1,skilled employee / official,1,low risk
+moderate,36,4210,little,1 to 4 years,male:single,26,own,1,skilled employee / official,1,high risk
+no account,9,2507,high,7+ years,male:single,51,for free,1,unskilled,1,low risk
+no account,12,2141,moderate,4 to 7 years,male:single,35,own,1,skilled employee / official,1,low risk
+little,18,866,little,1 to 4 years,male:married/widowed,25,own,1,unskilled,1,low risk
+no account,4,1544,little,4 to 7 years,male:single,42,own,3,unskilled,2,low risk
+none,24,1823,little,unemployed,male:single,30,own,1,management / highly skilled,2,high risk
+little,6,14555,unknown,unemployed,male:single,23,own,1,unemployed,1,high risk
+little,21,2767,moderate,7+ years,male:divorced/separated,61,rent,2,unskilled,1,high risk
+no account,12,1291,little,1 to 4 years,female:divorced/separated/married,35,own,2,skilled employee / official,1,low risk
+none,30,2522,little,7+ years,male:single,39,own,1,skilled employee / official,2,low risk
+none,24,915,unknown,7+ years,female:divorced/separated/married,29,own,1,skilled employee / official,1,high risk
+no account,6,1595,little,4 to 7 years,male:single,51,own,1,skilled employee / official,2,low risk
+none,48,4605,little,7+ years,male:single,24,for free,2,skilled employee / official,2,high risk
+no account,12,1185,little,1 to 4 years,female:divorced/separated/married,27,own,2,skilled employee / official,1,low risk
+no account,12,3447,high,1 to 4 years,female:divorced/separated/married,35,own,1,unskilled,2,low risk
+no account,24,1258,little,4 to 7 years,male:single,25,own,1,skilled employee / official,1,low risk
+no account,12,717,little,7+ years,male:single,52,own,3,skilled employee / official,1,low risk
+no account,6,1204,moderate,1 to 4 years,male:single,35,rent,1,skilled employee / official,1,low risk
+moderate,24,1925,little,1 to 4 years,male:single,26,own,1,skilled employee / official,1,low risk
+no account,18,433,little,unemployed,female:divorced/separated/married,22,rent,1,skilled employee / official,1,high risk
+none,6,666,very high,4 to 7 years,female:divorced/separated/married,39,own,2,unskilled,1,low risk
+moderate,12,2251,little,1 to 4 years,female:divorced/separated/married,46,own,1,unskilled,1,low risk
+little,30,2150,little,1 to 4 years,female:divorced/separated/married,24,own,1,skilled employee / official,1,high risk
+no account,24,4151,moderate,1 to 4 years,male:single,35,own,2,skilled employee / official,1,low risk
+little,9,2030,unknown,4 to 7 years,male:single,24,own,1,skilled employee / official,1,low risk
+little,60,7418,unknown,1 to 4 years,male:single,27,own,1,unskilled,1,low risk
+no account,24,2684,little,1 to 4 years,male:single,35,own,2,unskilled,1,low risk
+none,12,2149,little,1 to 4 years,male:divorced/separated,29,for free,1,skilled employee / official,1,high risk
+no account,15,3812,moderate,1 year,female:divorced/separated/married,23,own,1,skilled employee / official,1,low risk
+no account,11,1154,moderate,unemployed,female:divorced/separated/married,57,own,3,unskilled,1,low risk
+none,12,1657,little,1 to 4 years,male:single,27,own,1,skilled employee / official,1,low risk
+none,24,1603,little,7+ years,female:divorced/separated/married,55,own,1,skilled employee / official,1,low risk
+none,18,5302,little,7+ years,male:single,36,for free,3,management / highly skilled,1,low risk
+no account,12,2748,little,7+ years,female:divorced/separated/married,57,for free,3,unskilled,1,low risk
+no account,10,1231,little,7+ years,male:single,32,own,2,unskilled,2,low risk
+little,15,802,little,7+ years,male:single,37,own,1,skilled employee / official,2,high risk
+no account,36,6304,unknown,7+ years,male:single,36,own,2,skilled employee / official,1,low risk
+no account,24,1533,little,1 year,female:divorced/separated/married,38,own,1,skilled employee / official,1,low risk
+none,14,8978,little,7+ years,male:divorced/separated,45,own,1,management / highly skilled,1,high risk
+no account,24,999,unknown,7+ years,male:single,25,own,2,skilled employee / official,1,low risk
+no account,18,2662,unknown,4 to 7 years,male:single,32,own,1,skilled employee / official,1,low risk
+no account,12,1402,high,4 to 7 years,female:divorced/separated/married,37,rent,1,skilled employee / official,1,low risk
+little,48,12169,unknown,unemployed,male:single,36,for free,1,management / highly skilled,1,low risk
+little,48,3060,little,4 to 7 years,male:single,28,own,2,skilled employee / official,1,high risk
+none,30,11998,little,1 year,male:divorced/separated,34,own,1,unskilled,1,high risk
+no account,9,2697,little,1 to 4 years,male:single,32,own,1,skilled employee / official,2,low risk
+no account,18,2404,little,1 to 4 years,female:divorced/separated/married,26,own,2,skilled employee / official,1,low risk
+none,12,1262,unknown,7+ years,male:divorced/separated,49,own,1,unskilled,1,low risk
+no account,6,4611,little,1 year,female:divorced/separated/married,32,own,1,skilled employee / official,1,high risk
+no account,24,1901,moderate,1 to 4 years,male:single,29,rent,1,management / highly skilled,1,low risk
+no account,15,3368,very high,7+ years,male:single,23,rent,2,skilled employee / official,1,low risk
+no account,12,1574,little,1 to 4 years,male:single,50,own,1,skilled employee / official,1,low risk
+moderate,18,1445,unknown,4 to 7 years,male:single,49,own,1,unskilled,1,low risk
+no account,15,1520,unknown,7+ years,male:single,63,own,1,skilled employee / official,1,low risk
+little,24,3878,moderate,1 year,male:divorced/separated,37,own,1,skilled employee / official,1,low risk
+none,47,10722,little,1 year,female:divorced/separated/married,35,own,1,unskilled,1,low risk
+none,48,4788,little,4 to 7 years,male:single,26,own,1,skilled employee / official,2,low risk
+little,48,7582,moderate,unemployed,male:single,31,for free,1,management / highly skilled,1,low risk
+little,12,1092,little,1 to 4 years,female:divorced/separated/married,49,own,2,skilled employee / official,1,low risk
+none,24,1024,little,1 year,male:married/widowed,48,own,1,skilled employee / official,1,high risk
+no account,12,1076,little,1 to 4 years,male:married/widowed,26,own,1,skilled employee / official,1,low risk
+little,36,9398,little,1 year,male:married/widowed,28,rent,1,management / highly skilled,1,high risk
+none,24,6419,little,7+ years,female:divorced/separated/married,44,for free,2,management / highly skilled,2,low risk
+moderate,42,4796,little,7+ years,male:single,56,for free,1,skilled employee / official,1,low risk
+no account,48,7629,unknown,7+ years,male:divorced/separated,46,own,2,management / highly skilled,2,low risk
+little,48,9960,little,1 year,female:divorced/separated/married,26,own,1,skilled employee / official,1,high risk
+no account,12,4675,unknown,1 year,female:divorced/separated/married,20,rent,1,skilled employee / official,1,low risk
+no account,10,1287,unknown,7+ years,male:single,45,own,1,unskilled,1,low risk
+no account,18,2515,little,1 to 4 years,male:single,43,own,1,skilled employee / official,1,low risk
+little,21,2745,very high,4 to 7 years,male:single,32,own,2,skilled employee / official,1,low risk
+no account,6,672,little,unemployed,female:divorced/separated/married,54,own,1,unemployed,1,low risk
+little,36,3804,little,1 to 4 years,female:divorced/separated/married,42,own,1,skilled employee / official,1,high risk
+moderate,24,1344,unknown,4 to 7 years,male:single,37,own,2,unskilled,2,high risk
+none,10,1038,little,4 to 7 years,male:single,49,own,2,skilled employee / official,1,low risk
+no account,48,10127,high,1 to 4 years,male:single,44,for free,1,skilled employee / official,1,high risk
+no account,6,1543,very high,1 to 4 years,male:divorced/separated,33,own,1,skilled employee / official,1,low risk
+no account,30,4811,unknown,4 to 7 years,female:divorced/separated/married,24,rent,1,unskilled,1,low risk
+none,12,727,moderate,1 year,male:married/widowed,33,own,1,unskilled,1,high risk
+little,8,1237,little,1 to 4 years,female:divorced/separated/married,24,own,1,skilled employee / official,1,high risk
+little,9,276,little,1 to 4 years,male:married/widowed,22,rent,1,unskilled,1,low risk
+little,48,5381,unknown,unemployed,male:single,40,for free,1,unemployed,1,low risk
+no account,24,5511,moderate,1 to 4 years,male:single,25,own,1,skilled employee / official,1,low risk
+moderate,24,3749,little,1 year,female:divorced/separated/married,26,own,1,skilled employee / official,1,low risk
+little,12,685,little,4 to 7 years,male:married/widowed,25,own,1,unskilled,1,high risk
+moderate,4,1494,unknown,1 year,male:single,29,own,1,unskilled,2,low risk
+none,36,2746,little,7+ years,male:single,31,own,1,skilled employee / official,1,high risk
+none,12,708,little,1 to 4 years,male:single,38,own,1,unskilled,2,low risk
+little,24,4351,unknown,1 to 4 years,female:divorced/separated/married,48,own,1,unskilled,1,low risk
+no account,12,701,little,1 to 4 years,male:single,32,own,2,skilled employee / official,1,low risk
+none,15,3643,little,7+ years,female:divorced/separated/married,27,own,2,unskilled,1,low risk
+little,30,4249,little,unemployed,male:married/widowed,28,own,2,management / highly skilled,1,high risk
+none,24,1938,little,1 year,male:divorced/separated,32,own,1,skilled employee / official,1,high risk
+none,24,2910,little,4 to 7 years,male:single,34,for free,1,management / highly skilled,1,low risk
+none,18,2659,very high,1 to 4 years,male:single,28,own,1,skilled employee / official,1,low risk
+no account,18,1028,little,1 to 4 years,female:divorced/separated/married,36,own,2,skilled employee / official,1,low risk
+none,8,3398,little,4 to 7 years,male:single,39,own,2,unskilled,1,low risk
+no account,12,5801,unknown,7+ years,male:single,49,rent,1,skilled employee / official,1,low risk
+no account,24,1525,very high,4 to 7 years,female:divorced/separated/married,34,own,1,skilled employee / official,2,low risk
+moderate,36,4473,little,7+ years,male:single,31,own,1,skilled employee / official,1,low risk
+little,6,1068,little,7+ years,male:single,28,own,1,skilled employee / official,2,low risk
+none,24,6615,little,unemployed,male:single,75,for free,2,management / highly skilled,1,low risk
+no account,18,1864,moderate,1 to 4 years,female:divorced/separated/married,30,own,2,skilled employee / official,1,high risk
+little,60,7408,moderate,1 year,female:divorced/separated/married,24,own,1,management / highly skilled,1,high risk
+no account,48,11590,moderate,1 to 4 years,female:divorced/separated/married,24,rent,2,unskilled,1,high risk
+none,24,4110,little,7+ years,male:single,23,rent,2,skilled employee / official,2,high risk
+none,6,3384,little,1 to 4 years,male:divorced/separated,44,rent,1,management / highly skilled,1,high risk
+little,13,2101,little,1 year,female:divorced/separated/married,23,own,1,unskilled,1,low risk
+none,15,1275,unknown,1 to 4 years,female:divorced/separated/married,24,rent,1,skilled employee / official,1,high risk
+none,24,4169,little,1 to 4 years,male:single,28,own,1,skilled employee / official,1,low risk
+little,10,1521,little,1 to 4 years,male:divorced/separated,31,own,1,unskilled,1,low risk
+little,24,5743,little,1 year,female:divorced/separated/married,24,for free,2,skilled employee / official,1,low risk
+none,21,3599,little,4 to 7 years,female:divorced/separated/married,26,rent,1,unskilled,1,low risk
+little,18,3213,high,1 year,male:married/widowed,25,rent,1,skilled employee / official,1,low risk
+little,18,4439,little,7+ years,male:single,33,own,1,management / highly skilled,1,low risk
+moderate,10,3949,little,1 year,male:single,37,own,1,unskilled,2,low risk
+no account,15,1459,little,1 to 4 years,female:divorced/separated/married,43,own,1,unskilled,1,low risk
+little,13,882,little,1 year,male:single,23,own,2,skilled employee / official,1,low risk
+little,24,3758,high,unemployed,female:divorced/separated/married,23,rent,1,unemployed,1,low risk
+no account,6,1743,moderate,1 to 4 years,male:single,34,own,2,unskilled,1,low risk
+little,9,1136,very high,7+ years,male:single,32,for free,2,skilled employee / official,2,high risk
+no account,9,1236,little,1 year,female:divorced/separated/married,23,rent,1,skilled employee / official,1,low risk
+little,9,959,little,1 to 4 years,female:divorced/separated/married,29,own,1,skilled employee / official,1,high risk
+no account,18,3229,unknown,unemployed,male:single,38,own,1,management / highly skilled,1,low risk
+none,12,6199,little,1 to 4 years,male:single,28,rent,2,skilled employee / official,1,high risk
+no account,10,727,high,7+ years,male:single,46,for free,1,skilled employee / official,1,low risk
+little,24,1246,little,1 year,male:single,23,own,1,unskilled,1,high risk
+no account,12,2331,unknown,7+ years,male:single,49,own,1,skilled employee / official,1,low risk
+no account,36,4463,little,1 to 4 years,male:single,26,own,2,management / highly skilled,1,high risk
+no account,12,776,little,1 to 4 years,male:married/widowed,28,own,1,skilled employee / official,1,low risk
+none,30,2406,little,4 to 7 years,female:divorced/separated/married,23,rent,1,skilled employee / official,1,high risk
+little,18,1239,unknown,1 to 4 years,male:single,61,for free,1,skilled employee / official,1,low risk
+moderate,12,3399,unknown,7+ years,male:single,37,own,1,management / highly skilled,1,low risk
+moderate,12,2247,little,1 to 4 years,female:divorced/separated/married,36,own,2,skilled employee / official,1,low risk
+no account,6,1766,little,1 to 4 years,male:married/widowed,21,rent,1,skilled employee / official,1,low risk
+none,18,2473,little,unemployed,male:single,25,own,1,unemployed,1,high risk
+no account,12,1542,little,4 to 7 years,male:single,36,own,1,skilled employee / official,1,low risk
+no account,18,3850,little,4 to 7 years,male:single,27,own,2,skilled employee / official,1,low risk
+none,18,3650,little,1 year,female:divorced/separated/married,22,rent,1,skilled employee / official,1,low risk
+none,36,3446,little,7+ years,male:single,42,own,1,skilled employee / official,2,high risk
+little,18,3001,little,4 to 7 years,female:divorced/separated/married,40,rent,1,skilled employee / official,1,low risk
+no account,36,3079,unknown,1 to 4 years,male:single,36,own,1,skilled employee / official,1,low risk
+no account,18,6070,little,7+ years,male:single,33,own,2,skilled employee / official,1,low risk
+no account,10,2146,little,1 year,female:divorced/separated/married,23,rent,2,skilled employee / official,1,low risk
+no account,60,13756,unknown,7+ years,male:single,63,for free,1,management / highly skilled,1,low risk
+little,60,14782,moderate,7+ years,female:divorced/separated/married,60,for free,2,management / highly skilled,1,high risk
+none,48,7685,little,4 to 7 years,female:divorced/separated/married,37,rent,1,skilled employee / official,1,high risk
+no account,18,2320,little,unemployed,male:married/widowed,34,own,2,skilled employee / official,1,low risk
+no account,7,846,unknown,7+ years,male:single,36,for free,1,skilled employee / official,1,low risk
+little,36,14318,little,7+ years,male:single,57,for free,1,management / highly skilled,1,high risk
+no account,6,362,moderate,1 to 4 years,female:divorced/separated/married,52,own,2,unskilled,1,low risk
+none,20,2212,unknown,4 to 7 years,male:single,39,own,1,skilled employee / official,1,low risk
+little,18,12976,little,unemployed,female:divorced/separated/married,38,for free,1,management / highly skilled,1,high risk
+no account,22,1283,unknown,4 to 7 years,female:divorced/separated/married,25,rent,1,skilled employee / official,1,low risk
+moderate,12,1330,little,1 year,male:single,26,own,1,skilled employee / official,1,low risk
+no account,30,4272,moderate,1 to 4 years,male:single,26,own,2,unskilled,1,low risk
+no account,18,2238,little,1 to 4 years,female:divorced/separated/married,25,own,2,skilled employee / official,1,low risk
+no account,18,1126,unknown,1 year,female:divorced/separated/married,21,rent,1,skilled employee / official,1,low risk
+little,18,7374,little,unemployed,male:single,40,own,2,management / highly skilled,1,low risk
+little,15,2326,high,1 to 4 years,male:single,27,own,1,skilled employee / official,1,low risk
+no account,9,1449,little,4 to 7 years,female:divorced/separated/married,27,own,2,skilled employee / official,1,low risk
+no account,18,1820,little,1 to 4 years,male:married/widowed,30,own,1,management / highly skilled,1,low risk
+little,12,983,very high,1 year,female:divorced/separated/married,19,rent,1,unskilled,1,low risk
+none,36,3249,little,4 to 7 years,male:single,39,for free,1,management / highly skilled,2,low risk
+none,6,1957,little,4 to 7 years,female:divorced/separated/married,31,own,1,skilled employee / official,1,low risk
+no account,9,2406,little,unemployed,male:single,31,own,1,management / highly skilled,1,low risk
+little,39,11760,moderate,4 to 7 years,male:single,32,rent,1,skilled employee / official,1,low risk
+none,12,2578,little,unemployed,female:divorced/separated/married,55,for free,1,management / highly skilled,1,low risk
+none,36,2348,little,1 to 4 years,male:married/widowed,46,own,2,skilled employee / official,1,low risk
+little,12,1223,little,7+ years,male:divorced/separated,46,rent,2,skilled employee / official,1,high risk
+no account,24,1516,very high,1 to 4 years,female:divorced/separated/married,43,own,2,unskilled,1,low risk
+no account,18,1473,little,1 year,male:married/widowed,39,own,1,skilled employee / official,1,low risk
+little,18,1887,unknown,1 to 4 years,male:married/widowed,28,own,2,skilled employee / official,1,low risk
+no account,24,8648,little,1 year,male:single,27,own,2,skilled employee / official,1,high risk
+no account,14,802,little,1 to 4 years,male:single,27,own,2,unskilled,1,low risk
+little,18,2899,unknown,7+ years,male:single,43,own,1,skilled employee / official,2,low risk
+little,24,2039,little,1 year,male:married/widowed,22,own,1,skilled employee / official,1,high risk
+no account,24,2197,unknown,4 to 7 years,male:single,43,own,2,skilled employee / official,2,low risk
+none,15,1053,little,1 year,male:married/widowed,27,own,1,skilled employee / official,1,low risk
+no account,24,3235,high,7+ years,male:divorced/separated,26,own,1,management / highly skilled,1,low risk
+moderate,12,939,high,4 to 7 years,male:married/widowed,28,own,3,skilled employee / official,1,high risk
+little,24,1967,little,7+ years,female:divorced/separated/married,20,own,1,skilled employee / official,1,low risk
+no account,33,7253,little,4 to 7 years,male:single,35,own,2,management / highly skilled,1,low risk
+no account,12,2292,little,unemployed,male:single,42,own,2,management / highly skilled,1,high risk
+no account,10,1597,high,1 to 4 years,male:single,40,rent,1,unskilled,2,low risk
+none,24,1381,unknown,1 to 4 years,female:divorced/separated/married,35,own,1,skilled employee / official,1,high risk
+no account,36,5842,little,7+ years,male:single,35,own,2,skilled employee / official,2,low risk
+none,12,2579,little,1 year,male:single,33,own,1,unskilled,2,high risk
+none,18,8471,unknown,1 to 4 years,female:divorced/separated/married,23,rent,2,skilled employee / official,1,low risk
+no account,21,2782,high,4 to 7 years,female:divorced/separated/married,31,own,1,management / highly skilled,1,low risk
+little,18,1042,unknown,1 to 4 years,female:divorced/separated/married,33,own,1,skilled employee / official,1,high risk
+no account,15,3186,very high,4 to 7 years,female:divorced/separated/married,20,rent,1,skilled employee / official,1,low risk
+little,12,2028,unknown,1 to 4 years,male:single,30,own,1,skilled employee / official,1,low risk
+little,12,958,little,4 to 7 years,male:single,47,own,2,unskilled,2,low risk
+no account,21,1591,moderate,4 to 7 years,male:single,34,own,2,management / highly skilled,1,low risk
+little,12,2762,unknown,7+ years,female:divorced/separated/married,25,own,1,skilled employee / official,1,high risk
+little,18,2779,little,1 to 4 years,male:married/widowed,21,rent,1,skilled employee / official,1,low risk
+no account,28,2743,little,7+ years,male:single,29,own,2,skilled employee / official,1,low risk
+no account,18,1149,very high,1 to 4 years,male:single,46,own,2,skilled employee / official,1,low risk
+no account,9,1313,little,7+ years,male:single,20,own,1,skilled employee / official,1,low risk
+none,18,1190,little,unemployed,female:divorced/separated/married,55,for free,3,unemployed,2,high risk
+no account,5,3448,little,4 to 7 years,male:single,74,own,1,unskilled,1,low risk
+little,24,11328,little,1 to 4 years,male:single,29,own,2,management / highly skilled,1,high risk
+none,6,1872,little,unemployed,male:single,36,for free,3,management / highly skilled,1,low risk
+no account,24,2058,little,1 to 4 years,male:divorced/separated,33,own,2,skilled employee / official,1,low risk
+none,9,2136,little,1 to 4 years,male:single,25,own,1,skilled employee / official,1,low risk
+little,12,1484,unknown,1 to 4 years,male:married/widowed,25,own,1,skilled employee / official,1,high risk
+no account,6,660,high,4 to 7 years,male:married/widowed,23,rent,1,unskilled,1,low risk
+no account,24,1287,very high,7+ years,female:divorced/separated/married,37,own,2,skilled employee / official,1,low risk
+none,42,3394,little,unemployed,male:single,65,own,2,unemployed,1,low risk
+moderate,12,609,little,1 year,female:divorced/separated/married,26,own,1,unemployed,1,high risk
+no account,12,1884,little,7+ years,male:single,39,own,1,management / highly skilled,1,low risk
+none,12,1620,little,1 to 4 years,female:divorced/separated/married,30,own,1,skilled employee / official,1,low risk
+little,20,2629,little,1 to 4 years,male:single,29,own,2,skilled employee / official,1,low risk
+no account,12,719,little,7+ years,male:single,41,own,1,unskilled,2,high risk
+little,48,5096,little,1 to 4 years,female:divorced/separated/married,30,own,1,management / highly skilled,1,high risk
+no account,9,1244,unknown,7+ years,female:divorced/separated/married,41,rent,2,unskilled,1,low risk
+none,36,1842,little,1 year,female:divorced/separated/married,34,own,1,skilled employee / official,1,high risk
+little,7,2576,little,1 to 4 years,male:single,35,own,1,skilled employee / official,1,low risk
+moderate,12,1424,unknown,7+ years,female:divorced/separated/married,55,own,1,management / highly skilled,1,low risk
+little,15,1512,very high,1 to 4 years,male:married/widowed,61,own,2,skilled employee / official,1,high risk
+no account,36,11054,unknown,1 to 4 years,male:single,30,own,1,management / highly skilled,1,low risk
+no account,6,518,little,1 to 4 years,female:divorced/separated/married,29,own,1,skilled employee / official,1,low risk
+no account,12,2759,little,7+ years,male:single,34,own,2,skilled employee / official,1,low risk
+no account,24,2670,little,7+ years,male:single,35,own,1,management / highly skilled,1,low risk
+none,24,4817,little,4 to 7 years,male:single,31,own,1,skilled employee / official,1,high risk
+no account,24,2679,little,1 year,female:divorced/separated/married,29,own,1,management / highly skilled,1,low risk
+none,11,3905,little,1 to 4 years,male:single,36,rent,2,skilled employee / official,2,low risk
+none,12,3386,little,7+ years,male:single,35,for free,1,skilled employee / official,1,high risk
+none,6,343,little,1 year,female:divorced/separated/married,27,own,1,skilled employee / official,1,low risk
+no account,18,4594,little,1 year,male:single,32,own,1,skilled employee / official,1,low risk
+none,36,3620,little,1 to 4 years,male:single,37,own,1,skilled employee / official,2,low risk
+none,15,1721,little,1 year,male:single,36,own,1,skilled employee / official,1,low risk
+little,12,3017,little,1 year,female:divorced/separated/married,34,rent,1,management / highly skilled,1,low risk
+little,12,754,unknown,7+ years,male:single,38,own,2,skilled employee / official,1,low risk
+no account,18,1950,little,4 to 7 years,male:single,34,own,2,skilled employee / official,1,low risk
+none,24,2924,little,1 to 4 years,male:single,63,own,1,skilled employee / official,2,low risk
+none,24,1659,little,1 year,female:divorced/separated/married,29,rent,1,unskilled,1,high risk
+no account,48,7238,unknown,7+ years,male:single,32,own,2,skilled employee / official,2,low risk
+no account,33,2764,little,1 to 4 years,female:divorced/separated/married,26,own,2,skilled employee / official,1,low risk
+no account,24,4679,little,4 to 7 years,male:single,35,own,2,unskilled,1,low risk
+little,24,3092,moderate,1 year,male:married/widowed,22,rent,1,skilled employee / official,1,high risk
+none,6,448,little,1 year,female:divorced/separated/married,23,own,1,skilled employee / official,1,high risk
+none,9,654,little,1 to 4 years,male:single,28,own,1,unskilled,1,high risk
+no account,6,1238,unknown,unemployed,male:single,36,own,1,management / highly skilled,2,low risk
+little,18,1245,little,1 to 4 years,male:married/widowed,33,own,1,skilled employee / official,1,high risk
+none,18,3114,little,1 year,female:divorced/separated/married,26,rent,1,skilled employee / official,1,high risk
+no account,39,2569,high,1 to 4 years,male:single,24,own,1,skilled employee / official,1,low risk
+moderate,24,5152,little,4 to 7 years,male:single,25,own,1,skilled employee / official,1,low risk
+little,12,1037,moderate,4 to 7 years,male:single,39,own,1,unskilled,1,low risk
+none,15,1478,little,7+ years,male:single,44,own,2,skilled employee / official,2,low risk
+little,12,3573,little,1 to 4 years,female:divorced/separated/married,23,own,1,unskilled,1,low risk
+little,24,1201,little,1 year,male:single,26,own,1,skilled employee / official,1,low risk
+none,30,3622,very high,7+ years,female:divorced/separated/married,57,rent,2,skilled employee / official,1,low risk
+no account,15,960,very high,4 to 7 years,female:divorced/separated/married,30,own,2,skilled employee / official,1,low risk
+no account,12,1163,high,1 to 4 years,male:single,44,own,1,skilled employee / official,1,low risk
+little,6,1209,little,unemployed,male:single,47,own,1,management / highly skilled,1,high risk
+no account,12,3077,little,1 to 4 years,male:single,52,own,1,skilled employee / official,1,low risk
+no account,24,3757,little,7+ years,female:divorced/separated/married,62,for free,1,skilled employee / official,1,low risk
+no account,10,1418,moderate,1 to 4 years,male:single,35,rent,1,unskilled,1,low risk
+no account,6,3518,little,1 to 4 years,male:single,26,rent,1,skilled employee / official,1,low risk
+no account,12,1934,little,7+ years,male:single,26,own,2,skilled employee / official,1,low risk
+little,27,8318,little,7+ years,female:divorced/separated/married,42,for free,2,management / highly skilled,1,high risk
+no account,6,1237,moderate,1 to 4 years,female:divorced/separated/married,27,own,2,skilled employee / official,1,low risk
+little,6,368,unknown,7+ years,male:single,38,own,1,skilled employee / official,1,low risk
+none,12,2122,little,1 to 4 years,male:single,39,rent,2,unskilled,2,low risk
+none,24,2996,unknown,1 to 4 years,male:married/widowed,20,own,1,skilled employee / official,1,high risk
+little,36,9034,moderate,1 year,male:single,29,rent,1,management / highly skilled,1,high risk
+no account,24,1585,little,4 to 7 years,male:single,40,own,2,skilled employee / official,1,low risk
+little,18,1301,little,7+ years,male:married/widowed,32,own,1,unskilled,1,low risk
+moderate,6,1323,moderate,7+ years,male:divorced/separated,28,own,2,skilled employee / official,2,low risk
+none,24,3123,little,1 year,female:divorced/separated/married,27,own,1,skilled employee / official,1,high risk
+none,36,5493,little,7+ years,male:single,42,for free,1,skilled employee / official,2,low risk
+moderate,9,1126,moderate,7+ years,male:divorced/separated,49,own,1,skilled employee / official,1,low risk
+little,24,1216,moderate,1 year,male:single,38,own,2,skilled employee / official,2,high risk
+none,24,1207,little,1 year,female:divorced/separated/married,24,rent,1,skilled employee / official,1,high risk
+no account,10,1309,unknown,1 to 4 years,male:single,27,own,1,unskilled,1,high risk
+moderate,15,2360,high,1 to 4 years,male:single,36,own,1,skilled employee / official,1,low risk
+little,15,6850,moderate,unemployed,male:single,34,own,1,management / highly skilled,2,high risk
+no account,24,1413,little,1 to 4 years,male:married/widowed,28,own,1,skilled employee / official,1,low risk
+no account,39,8588,moderate,7+ years,male:single,45,own,1,management / highly skilled,1,low risk
+none,12,759,little,4 to 7 years,male:single,26,own,1,skilled employee / official,1,high risk
+no account,36,4686,little,1 to 4 years,male:single,32,for free,1,management / highly skilled,1,low risk
+moderate,15,2687,little,4 to 7 years,male:single,26,rent,1,skilled employee / official,1,low risk
+little,12,585,little,1 to 4 years,male:married/widowed,20,rent,2,skilled employee / official,1,low risk
+no account,24,2255,unknown,1 year,male:single,54,own,1,skilled employee / official,1,low risk
+none,6,609,little,4 to 7 years,female:divorced/separated/married,37,own,2,skilled employee / official,1,low risk
+none,6,1361,little,1 year,male:single,40,own,1,unskilled,2,low risk
+no account,36,7127,little,1 year,female:divorced/separated/married,23,rent,2,skilled employee / official,1,high risk
+none,6,1203,moderate,7+ years,male:single,43,own,1,skilled employee / official,1,low risk
+no account,6,700,unknown,7+ years,male:single,36,for free,2,skilled employee / official,1,low risk
+no account,24,5507,little,7+ years,male:single,44,for free,2,skilled employee / official,1,low risk
+none,18,3190,little,1 to 4 years,female:divorced/separated/married,24,own,1,skilled employee / official,1,high risk
+none,48,7119,little,1 to 4 years,male:single,53,for free,2,skilled employee / official,2,high risk
+no account,24,3488,moderate,4 to 7 years,female:divorced/separated/married,23,own,1,skilled employee / official,1,low risk
+little,18,1113,little,1 to 4 years,female:divorced/separated/married,26,own,1,unskilled,2,low risk
+little,26,7966,little,1 year,male:single,30,own,2,skilled employee / official,1,low risk
+no account,15,1532,moderate,1 to 4 years,female:divorced/separated/married,31,own,1,skilled employee / official,1,low risk
+no account,4,1503,little,4 to 7 years,male:single,42,own,2,unskilled,2,low risk
+none,36,2302,little,1 to 4 years,male:divorced/separated,31,rent,1,skilled employee / official,1,high risk
+none,6,662,little,1 year,male:single,41,own,1,unskilled,2,low risk
+little,36,2273,little,4 to 7 years,male:single,32,own,2,skilled employee / official,2,low risk
+little,15,2631,moderate,1 to 4 years,female:divorced/separated/married,28,rent,2,skilled employee / official,1,high risk
+no account,12,1503,little,1 to 4 years,male:married/widowed,41,rent,1,skilled employee / official,1,low risk
+no account,24,1311,moderate,4 to 7 years,male:married/widowed,26,own,1,skilled employee / official,1,low risk
+no account,24,3105,unknown,1 year,male:single,25,own,2,skilled employee / official,1,low risk
+moderate,21,2319,little,1 year,male:divorced/separated,33,rent,1,skilled employee / official,1,high risk
+none,6,1374,unknown,unemployed,female:divorced/separated/married,75,own,1,management / highly skilled,1,low risk
+little,18,3612,little,7+ years,female:divorced/separated/married,37,own,1,skilled employee / official,1,low risk
+none,48,7763,little,7+ years,male:single,42,for free,1,management / highly skilled,1,high risk
+moderate,18,3049,little,1 year,female:divorced/separated/married,45,own,1,unskilled,1,low risk
+little,12,1534,little,1 year,male:married/widowed,23,rent,1,skilled employee / official,1,high risk
+no account,24,2032,little,7+ years,male:single,60,for free,2,skilled employee / official,1,low risk
+none,30,6350,unknown,7+ years,male:single,31,own,1,skilled employee / official,1,high risk
+moderate,18,2864,little,1 to 4 years,male:single,34,own,1,unskilled,2,high risk
+no account,12,1255,little,7+ years,male:single,61,own,2,unskilled,1,low risk
+none,24,1333,little,unemployed,male:single,43,for free,2,skilled employee / official,2,high risk
+no account,24,2022,little,1 to 4 years,female:divorced/separated/married,37,own,1,skilled employee / official,1,low risk
+no account,24,1552,little,4 to 7 years,male:single,32,own,1,skilled employee / official,2,low risk
+none,12,626,little,1 to 4 years,female:divorced/separated/married,24,own,1,unskilled,1,high risk
+no account,48,8858,unknown,4 to 7 years,male:single,35,for free,2,skilled employee / official,1,low risk
+no account,12,996,unknown,4 to 7 years,female:divorced/separated/married,23,own,2,skilled employee / official,1,low risk
+no account,6,1750,high,7+ years,male:single,45,own,1,unskilled,2,low risk
+none,48,6999,little,4 to 7 years,male:married/widowed,34,own,2,skilled employee / official,1,high risk
+little,12,1995,moderate,1 year,male:single,27,own,1,skilled employee / official,1,low risk
+little,9,1199,little,4 to 7 years,female:divorced/separated/married,67,own,2,management / highly skilled,1,low risk
+little,12,1331,little,1 year,male:single,22,own,1,skilled employee / official,1,high risk
+little,18,2278,moderate,1 year,female:divorced/separated/married,28,own,2,skilled employee / official,1,high risk
+no account,21,5003,unknown,1 to 4 years,female:divorced/separated/married,29,own,2,skilled employee / official,1,high risk
+none,24,3552,little,4 to 7 years,male:single,27,own,1,skilled employee / official,1,high risk
+little,18,1928,little,1 year,male:single,31,own,2,unskilled,1,high risk
+none,24,2964,unknown,7+ years,male:single,49,for free,1,skilled employee / official,2,low risk
+none,24,1546,little,4 to 7 years,male:single,24,rent,1,unskilled,1,high risk
+moderate,6,683,little,1 year,female:divorced/separated/married,29,own,1,skilled employee / official,1,low risk
+little,36,12389,unknown,1 to 4 years,male:single,37,for free,1,skilled employee / official,1,high risk
+little,24,4712,unknown,1 to 4 years,male:single,37,own,2,management / highly skilled,1,low risk
+little,24,1553,moderate,4 to 7 years,female:divorced/separated/married,23,rent,2,skilled employee / official,1,low risk
+none,12,1372,little,4 to 7 years,male:divorced/separated,36,own,1,skilled employee / official,1,high risk
+no account,24,2578,very high,7+ years,male:single,34,own,1,skilled employee / official,1,low risk
+little,48,3979,unknown,4 to 7 years,male:single,41,own,2,skilled employee / official,2,low risk
+none,48,6758,little,1 to 4 years,female:divorced/separated/married,31,own,1,skilled employee / official,1,high risk
+none,24,3234,little,1 year,female:divorced/separated/married,23,rent,1,unskilled,1,high risk
+no account,30,5954,little,4 to 7 years,male:single,38,own,1,skilled employee / official,1,low risk
+no account,24,5433,unknown,unemployed,female:divorced/separated/married,26,rent,1,management / highly skilled,1,low risk
+none,15,806,little,1 to 4 years,female:divorced/separated/married,22,own,1,unskilled,1,low risk
+little,9,1082,little,7+ years,male:single,27,own,2,unskilled,1,low risk
+no account,15,2788,little,4 to 7 years,female:divorced/separated/married,24,own,2,skilled employee / official,1,low risk
+little,12,2930,little,4 to 7 years,female:divorced/separated/married,27,own,1,skilled employee / official,1,low risk
+no account,24,1927,unknown,1 to 4 years,female:divorced/separated/married,33,own,2,skilled employee / official,1,low risk
+little,36,2820,little,1 year,male:divorced/separated,27,own,2,skilled employee / official,1,high risk
+no account,24,937,little,1 year,male:married/widowed,27,own,2,unskilled,1,low risk
+little,18,1056,little,7+ years,male:single,30,own,2,skilled employee / official,1,high risk
+little,12,3124,little,1 year,male:single,49,own,2,unskilled,2,low risk
+no account,9,1388,little,1 to 4 years,female:divorced/separated/married,26,rent,1,skilled employee / official,1,low risk
+little,36,2384,little,1 year,male:single,33,rent,1,unskilled,1,high risk
+no account,12,2133,unknown,7+ years,female:divorced/separated/married,52,for free,1,management / highly skilled,1,low risk
+none,18,2039,little,1 to 4 years,female:divorced/separated/married,20,rent,1,skilled employee / official,1,high risk
+none,9,2799,little,1 to 4 years,male:single,36,rent,2,skilled employee / official,2,low risk
+none,12,1289,little,1 to 4 years,male:single,21,own,1,unskilled,1,low risk
+none,18,1217,little,1 to 4 years,male:married/widowed,47,own,1,unskilled,1,high risk
+none,12,2246,little,7+ years,male:single,60,own,2,skilled employee / official,1,high risk
+none,12,385,little,4 to 7 years,female:divorced/separated/married,58,own,4,unskilled,1,low risk
+little,24,1965,unknown,1 to 4 years,female:divorced/separated/married,42,rent,2,skilled employee / official,1,low risk
+no account,21,1572,very high,7+ years,female:divorced/separated/married,36,own,1,unskilled,1,low risk
+little,24,2718,little,1 to 4 years,female:divorced/separated/married,20,rent,1,unskilled,1,high risk
+none,24,1358,unknown,7+ years,male:single,40,own,1,management / highly skilled,1,high risk
+little,6,931,moderate,1 year,female:divorced/separated/married,32,own,1,unskilled,1,high risk
+none,24,1442,little,4 to 7 years,female:divorced/separated/married,23,rent,2,skilled employee / official,1,high risk
+little,24,4241,little,1 to 4 years,male:single,36,own,3,unskilled,1,high risk
+no account,18,2775,little,4 to 7 years,male:single,31,own,2,skilled employee / official,1,high risk
+no account,24,3863,little,1 to 4 years,male:single,32,for free,1,skilled employee / official,1,low risk
+little,7,2329,little,1 year,female:divorced/separated/married,45,own,1,skilled employee / official,1,low risk
+little,9,918,little,1 to 4 years,female:divorced/separated/married,30,own,1,skilled employee / official,1,high risk
+little,24,1837,little,4 to 7 years,female:divorced/separated/married,34,for free,1,unskilled,1,high risk
+no account,36,3349,little,1 to 4 years,female:divorced/separated/married,28,own,1,management / highly skilled,1,high risk
+moderate,10,1275,little,1 year,female:divorced/separated/married,23,own,1,skilled employee / official,1,low risk
+none,24,2828,high,1 to 4 years,male:single,22,own,1,skilled employee / official,1,low risk
+no account,24,4526,little,1 to 4 years,male:single,74,own,1,management / highly skilled,1,low risk
+little,36,2671,moderate,1 to 4 years,female:divorced/separated/married,50,for free,1,skilled employee / official,1,high risk
+no account,18,2051,little,1 year,male:single,33,own,1,skilled employee / official,1,low risk
+no account,15,1300,unknown,7+ years,male:single,45,for free,1,skilled employee / official,2,low risk
+none,12,741,moderate,unemployed,female:divorced/separated/married,22,own,1,skilled employee / official,1,high risk
+moderate,10,1240,moderate,7+ years,female:divorced/separated/married,48,for free,1,unskilled,2,high risk
+none,21,3357,very high,1 year,female:divorced/separated/married,29,own,1,skilled employee / official,1,low risk
+none,24,3632,little,1 to 4 years,female:divorced/separated/married,22,rent,1,skilled employee / official,1,low risk
+no account,18,1808,little,4 to 7 years,female:divorced/separated/married,22,own,1,skilled employee / official,1,high risk
+little,48,12204,unknown,1 to 4 years,male:single,48,own,1,management / highly skilled,1,low risk
+little,60,9157,unknown,1 to 4 years,male:single,27,for free,1,management / highly skilled,1,low risk
+none,6,3676,little,1 to 4 years,male:single,37,rent,3,skilled employee / official,2,low risk
+little,30,3441,moderate,1 to 4 years,female:divorced/separated/married,21,rent,1,skilled employee / official,1,high risk
+no account,12,640,little,1 to 4 years,male:divorced/separated,49,own,1,unskilled,1,low risk
+little,21,3652,little,4 to 7 years,male:single,27,own,2,skilled employee / official,1,low risk
+no account,18,1530,little,1 to 4 years,male:single,32,own,2,skilled employee / official,1,high risk
+no account,48,3914,unknown,1 to 4 years,male:divorced/separated,38,own,1,skilled employee / official,1,high risk
+none,12,1858,little,1 year,female:divorced/separated/married,22,rent,1,skilled employee / official,1,low risk
+none,18,2600,little,1 to 4 years,male:single,65,for free,2,skilled employee / official,1,high risk
+no account,15,1979,unknown,7+ years,male:single,35,own,1,skilled employee / official,1,low risk
+moderate,6,2116,little,1 to 4 years,male:single,41,own,1,skilled employee / official,1,low risk
+little,9,1437,moderate,4 to 7 years,male:single,29,own,1,skilled employee / official,1,high risk
+no account,42,4042,high,1 to 4 years,male:single,36,own,2,skilled employee / official,1,low risk
+no account,9,3832,unknown,7+ years,male:single,64,own,1,unskilled,1,low risk
+none,24,3660,little,1 to 4 years,female:divorced/separated/married,28,own,1,skilled employee / official,1,low risk
+none,18,1553,little,1 to 4 years,male:single,44,own,1,skilled employee / official,1,high risk
+little,15,1444,unknown,1 year,male:single,23,own,1,skilled employee / official,1,low risk
+no account,9,1980,little,1 year,female:divorced/separated/married,19,rent,2,skilled employee / official,1,high risk
+little,24,1355,little,1 year,female:divorced/separated/married,25,own,1,unskilled,1,high risk
+no account,12,1393,little,7+ years,male:single,47,own,3,skilled employee / official,2,low risk
+no account,24,1376,high,4 to 7 years,female:divorced/separated/married,28,own,1,skilled employee / official,1,low risk
+no account,60,15653,little,4 to 7 years,male:single,21,own,2,skilled employee / official,1,low risk
+no account,12,1493,little,1 year,female:divorced/separated/married,34,own,1,skilled employee / official,2,low risk
+none,42,4370,little,4 to 7 years,male:single,26,own,2,skilled employee / official,2,high risk
+none,18,750,little,unemployed,female:divorced/separated/married,27,own,1,unemployed,1,high risk
+little,15,1308,little,7+ years,male:single,38,own,2,unskilled,1,low risk
+no account,15,4623,moderate,1 to 4 years,male:single,40,own,1,management / highly skilled,1,high risk
+no account,24,1851,little,4 to 7 years,male:married/widowed,33,own,2,skilled employee / official,1,low risk
+none,18,1880,little,4 to 7 years,male:married/widowed,32,own,2,management / highly skilled,1,low risk
+no account,36,7980,unknown,1 year,male:single,27,rent,2,skilled employee / official,1,high risk
+none,30,4583,little,1 to 4 years,male:divorced/separated,32,own,2,skilled employee / official,1,low risk
+no account,12,1386,high,1 to 4 years,female:divorced/separated/married,26,own,1,skilled employee / official,1,high risk
+moderate,24,947,little,4 to 7 years,male:single,38,for free,1,skilled employee / official,2,high risk
+none,12,684,little,1 to 4 years,male:single,40,rent,1,unskilled,2,high risk
+none,48,7476,little,4 to 7 years,male:single,50,for free,1,management / highly skilled,1,low risk
+little,12,1922,little,1 to 4 years,male:single,37,own,1,unskilled,1,high risk
+none,24,2303,little,7+ years,male:single,45,own,1,skilled employee / official,1,high risk
+little,36,8086,moderate,7+ years,male:single,42,own,4,management / highly skilled,1,high risk
+no account,24,2346,little,4 to 7 years,male:single,35,own,2,skilled employee / official,1,low risk
+none,14,3973,little,unemployed,male:single,22,for free,1,skilled employee / official,1,low risk
+little,12,888,little,7+ years,male:single,41,own,1,unskilled,2,high risk
+no account,48,10222,unknown,4 to 7 years,male:single,37,own,1,skilled employee / official,1,low risk
+little,30,4221,little,1 to 4 years,female:divorced/separated/married,28,own,2,skilled employee / official,1,low risk
+little,18,6361,little,7+ years,male:single,41,own,1,skilled employee / official,1,low risk
+moderate,12,1297,little,1 to 4 years,male:married/widowed,23,rent,1,skilled employee / official,1,low risk
+none,12,900,unknown,1 to 4 years,male:married/widowed,23,own,1,skilled employee / official,1,high risk
+no account,21,2241,little,7+ years,male:single,50,own,2,skilled employee / official,1,low risk
+little,6,1050,little,unemployed,male:single,35,own,2,management / highly skilled,1,low risk
+moderate,6,1047,little,1 to 4 years,female:divorced/separated/married,50,own,1,unskilled,1,low risk
+no account,24,6314,little,unemployed,male:single,27,own,2,management / highly skilled,1,low risk
+little,30,3496,very high,1 to 4 years,male:single,34,own,1,skilled employee / official,2,low risk
+no account,48,3609,little,1 to 4 years,female:divorced/separated/married,27,own,1,skilled employee / official,1,low risk
+none,12,4843,little,7+ years,male:single,43,rent,2,skilled employee / official,1,high risk
+moderate,30,3017,little,7+ years,male:single,47,own,1,skilled employee / official,1,low risk
+no account,24,4139,moderate,1 to 4 years,male:single,27,own,2,unskilled,1,low risk
+no account,36,5742,moderate,4 to 7 years,male:single,31,own,2,skilled employee / official,1,low risk
+no account,60,10366,little,7+ years,male:single,42,own,1,management / highly skilled,1,low risk
+no account,6,2080,high,1 to 4 years,male:married/widowed,24,own,1,skilled employee / official,1,low risk
+no account,21,2580,high,1 year,male:single,41,own,1,unskilled,2,high risk
+no account,30,4530,little,4 to 7 years,female:divorced/separated/married,26,rent,1,management / highly skilled,1,low risk
+no account,24,5150,little,7+ years,male:single,33,own,1,skilled employee / official,1,low risk
+little,72,5595,moderate,1 to 4 years,male:married/widowed,24,own,1,skilled employee / official,1,high risk
+none,24,2384,little,7+ years,male:single,64,rent,1,unskilled,1,low risk
+no account,18,1453,little,1 year,female:divorced/separated/married,26,own,1,skilled employee / official,1,low risk
+no account,6,1538,little,1 year,female:divorced/separated/married,56,own,1,skilled employee / official,1,low risk
+no account,12,2279,unknown,1 to 4 years,male:single,37,for free,1,skilled employee / official,1,low risk
+no account,15,1478,little,1 to 4 years,male:married/widowed,33,own,2,skilled employee / official,1,low risk
+no account,24,5103,little,1 year,male:married/widowed,47,for free,3,skilled employee / official,1,low risk
+little,36,9857,moderate,4 to 7 years,male:single,31,own,2,unskilled,2,low risk
+no account,60,6527,unknown,1 to 4 years,male:single,34,for free,1,skilled employee / official,2,low risk
+moderate,10,1347,unknown,4 to 7 years,male:single,27,own,2,skilled employee / official,1,low risk
+little,36,2862,moderate,7+ years,male:single,30,for free,1,skilled employee / official,1,low risk
+no account,9,2753,moderate,7+ years,male:single,35,own,1,skilled employee / official,1,low risk
+none,12,3651,very high,1 to 4 years,male:single,31,own,1,skilled employee / official,2,low risk
+none,15,975,little,1 to 4 years,male:divorced/separated,25,own,2,skilled employee / official,1,low risk
+little,15,2631,moderate,1 to 4 years,female:divorced/separated/married,25,own,1,unskilled,1,low risk
+little,24,2896,moderate,1 year,male:single,29,own,1,skilled employee / official,1,low risk
+none,6,4716,unknown,1 year,male:single,44,own,2,unskilled,2,low risk
+no account,24,2284,little,4 to 7 years,male:single,28,own,1,skilled employee / official,1,low risk
+no account,6,1236,high,1 to 4 years,male:single,50,rent,1,skilled employee / official,1,low risk
+little,12,1103,little,4 to 7 years,male:single,29,own,2,skilled employee / official,1,low risk
+no account,12,926,little,unemployed,female:divorced/separated/married,38,own,1,unemployed,1,low risk
+no account,18,1800,little,1 to 4 years,male:single,24,own,2,skilled employee / official,1,low risk
+moderate,15,1905,little,7+ years,male:single,40,rent,1,management / highly skilled,1,low risk
+no account,12,1123,high,1 to 4 years,female:divorced/separated/married,29,rent,1,unskilled,1,high risk
+none,48,6331,little,7+ years,male:single,46,for free,2,skilled employee / official,1,high risk
+moderate,24,1377,moderate,7+ years,female:divorced/separated/married,47,for free,1,skilled employee / official,1,low risk
+little,30,2503,moderate,7+ years,male:single,41,own,2,skilled employee / official,1,low risk
+little,27,2528,little,1 year,female:divorced/separated/married,32,own,1,skilled employee / official,2,low risk
+no account,15,5324,high,7+ years,female:divorced/separated/married,35,for free,1,skilled employee / official,1,low risk
+little,48,6560,moderate,4 to 7 years,male:single,24,own,1,skilled employee / official,1,high risk
+little,12,2969,little,1 year,female:divorced/separated/married,25,rent,2,skilled employee / official,1,high risk
+little,9,1206,little,7+ years,female:divorced/separated/married,25,own,1,skilled employee / official,1,low risk
+little,9,2118,little,1 to 4 years,male:single,37,own,1,unskilled,2,low risk
+no account,18,629,high,7+ years,male:single,32,own,2,management / highly skilled,1,low risk
+none,6,1198,little,7+ years,female:divorced/separated/married,35,for free,1,skilled employee / official,1,high risk
+no account,21,2476,unknown,7+ years,male:single,46,own,1,management / highly skilled,1,low risk
+none,9,1138,little,1 to 4 years,male:single,25,own,2,unskilled,1,low risk
+little,60,14027,little,4 to 7 years,male:single,27,own,1,management / highly skilled,1,high risk
+no account,30,7596,unknown,7+ years,male:single,63,own,2,skilled employee / official,1,low risk
+no account,30,3077,unknown,7+ years,male:single,40,own,2,skilled employee / official,2,low risk
+no account,18,1505,little,1 to 4 years,male:single,32,for free,1,management / highly skilled,1,low risk
+moderate,24,3148,unknown,1 to 4 years,male:single,31,own,2,skilled employee / official,1,low risk
+little,20,6148,moderate,7+ years,male:married/widowed,31,own,2,skilled employee / official,1,low risk
+moderate,9,1337,little,1 year,male:single,34,own,2,management / highly skilled,1,high risk
+little,6,433,very high,1 year,female:divorced/separated/married,24,rent,1,skilled employee / official,2,high risk
+none,12,1228,little,1 to 4 years,female:divorced/separated/married,24,own,1,unskilled,1,high risk
+little,9,790,high,1 to 4 years,female:divorced/separated/married,66,own,1,unskilled,1,low risk
+no account,27,2570,little,1 to 4 years,female:divorced/separated/married,21,rent,1,skilled employee / official,1,high risk
+no account,6,250,very high,1 to 4 years,female:divorced/separated/married,41,own,2,unskilled,1,low risk
+no account,15,1316,high,1 to 4 years,male:married/widowed,47,own,2,unskilled,1,low risk
+none,18,1882,little,1 to 4 years,female:divorced/separated/married,25,rent,2,skilled employee / official,1,high risk
+little,48,6416,little,7+ years,female:divorced/separated/married,59,rent,1,skilled employee / official,1,high risk
+moderate,24,1275,very high,1 to 4 years,male:divorced/separated,36,own,2,skilled employee / official,1,low risk
+little,24,6403,little,1 year,male:single,33,own,1,skilled employee / official,1,low risk
+none,24,1987,little,1 to 4 years,male:single,21,rent,1,unskilled,2,high risk
+little,8,760,little,4 to 7 years,female:divorced/separated/married,44,own,1,unskilled,1,low risk
+no account,24,2603,very high,1 to 4 years,female:divorced/separated/married,28,rent,1,skilled employee / official,1,low risk
+no account,4,3380,little,4 to 7 years,female:divorced/separated/married,37,own,1,skilled employee / official,2,low risk
+little,36,3990,unknown,1 year,female:divorced/separated/married,29,own,1,unemployed,1,low risk
+little,24,11560,little,1 to 4 years,female:divorced/separated/married,23,rent,2,management / highly skilled,1,high risk
+none,18,4380,moderate,1 to 4 years,male:single,35,own,1,unskilled,2,low risk
+no account,6,6761,little,4 to 7 years,male:single,45,own,2,management / highly skilled,2,low risk
+little,30,4280,moderate,1 to 4 years,female:divorced/separated/married,26,rent,2,unskilled,1,high risk
+none,24,2325,moderate,4 to 7 years,male:single,32,own,1,skilled employee / official,1,low risk
+little,10,1048,little,1 to 4 years,male:single,23,own,1,unskilled,1,low risk
+no account,21,3160,unknown,7+ years,male:single,41,own,1,skilled employee / official,1,low risk
+none,24,2483,high,1 to 4 years,male:single,22,own,1,skilled employee / official,1,low risk
+none,39,14179,unknown,4 to 7 years,male:single,30,own,2,management / highly skilled,1,low risk
+none,13,1797,little,1 year,male:single,28,own,2,unskilled,1,low risk
+none,15,2511,little,unemployed,female:divorced/separated/married,23,rent,1,skilled employee / official,1,low risk
+none,12,1274,little,1 year,female:divorced/separated/married,37,own,1,unskilled,1,high risk
+no account,21,5248,unknown,1 to 4 years,male:single,26,own,1,skilled employee / official,1,low risk
+no account,15,3029,little,4 to 7 years,male:single,33,own,1,skilled employee / official,1,low risk
+none,6,428,little,7+ years,female:divorced/separated/married,49,own,1,skilled employee / official,1,low risk
+none,18,976,little,1 year,female:divorced/separated/married,23,own,1,unskilled,1,high risk
+little,12,841,moderate,4 to 7 years,female:divorced/separated/married,23,rent,1,unskilled,1,low risk
+no account,30,5771,little,4 to 7 years,female:divorced/separated/married,25,own,2,skilled employee / official,1,low risk
+no account,12,1555,very high,7+ years,male:single,55,for free,2,skilled employee / official,2,high risk
+none,24,1285,unknown,4 to 7 years,female:divorced/separated/married,32,rent,1,skilled employee / official,1,high risk
+moderate,6,1299,little,1 to 4 years,male:single,74,own,3,unemployed,2,low risk
+moderate,15,1271,unknown,1 to 4 years,male:single,39,for free,2,skilled employee / official,1,high risk
+no account,24,1393,little,1 to 4 years,male:single,31,own,1,skilled employee / official,1,low risk
+none,12,691,little,7+ years,male:single,35,own,2,skilled employee / official,1,high risk
+no account,15,5045,unknown,7+ years,female:divorced/separated/married,59,own,1,skilled employee / official,1,low risk
+none,18,2124,little,1 to 4 years,female:divorced/separated/married,24,rent,2,skilled employee / official,1,high risk
+none,12,2214,little,1 to 4 years,male:single,24,own,1,unskilled,1,low risk
+no account,21,12680,unknown,7+ years,male:single,30,for free,1,management / highly skilled,1,high risk
+no account,24,2463,moderate,4 to 7 years,male:married/widowed,27,own,2,skilled employee / official,1,low risk
+little,12,1155,little,7+ years,male:married/widowed,40,own,2,unskilled,1,low risk
+none,30,3108,little,1 year,male:divorced/separated,31,own,1,unskilled,1,high risk
+no account,10,2901,unknown,1 year,female:divorced/separated/married,31,rent,1,skilled employee / official,1,low risk
+little,12,3617,little,7+ years,male:single,28,rent,3,skilled employee / official,1,low risk
+no account,12,1655,little,7+ years,male:single,63,own,2,unskilled,1,low risk
+none,24,2812,unknown,7+ years,female:divorced/separated/married,26,rent,1,skilled employee / official,1,low risk
+none,36,8065,little,1 to 4 years,female:divorced/separated/married,25,own,2,management / highly skilled,1,high risk
+no account,21,3275,little,7+ years,male:single,36,own,1,management / highly skilled,1,low risk
+no account,24,2223,moderate,7+ years,male:single,52,own,2,skilled employee / official,1,low risk
+moderate,12,1480,high,unemployed,male:single,66,for free,3,unemployed,1,low risk
+none,24,1371,unknown,1 to 4 years,female:divorced/separated/married,25,rent,1,skilled employee / official,1,high risk
+no account,36,3535,little,4 to 7 years,male:single,37,own,2,skilled employee / official,1,low risk
+none,18,3509,little,4 to 7 years,female:divorced/separated/married,25,own,1,skilled employee / official,1,low risk
+no account,36,5711,very high,7+ years,male:single,38,own,2,management / highly skilled,1,low risk
+little,18,3872,little,unemployed,female:divorced/separated/married,67,own,1,skilled employee / official,1,low risk
+little,39,4933,little,4 to 7 years,male:single,25,own,2,skilled employee / official,1,high risk
+no account,24,1940,very high,7+ years,male:single,60,own,1,skilled employee / official,1,low risk
+little,12,1410,little,1 to 4 years,male:single,31,own,1,unskilled,1,low risk
+little,12,836,moderate,1 year,female:divorced/separated/married,23,own,1,unskilled,1,high risk
+little,20,6468,unknown,unemployed,male:divorced/separated,60,own,1,management / highly skilled,1,low risk
+little,18,1941,very high,1 to 4 years,male:single,35,own,1,unskilled,1,low risk
+no account,22,2675,high,7+ years,male:single,40,own,1,skilled employee / official,1,low risk
+no account,48,2751,unknown,7+ years,male:single,38,own,2,skilled employee / official,2,low risk
+little,48,6224,little,7+ years,male:single,50,for free,1,skilled employee / official,1,high risk
+none,40,5998,little,1 to 4 years,male:single,27,own,1,skilled employee / official,1,high risk
+little,21,1188,little,7+ years,female:divorced/separated/married,39,own,1,skilled employee / official,2,high risk
+no account,24,6313,unknown,7+ years,male:single,41,own,1,management / highly skilled,2,low risk
+no account,6,1221,unknown,1 to 4 years,male:married/widowed,27,own,2,skilled employee / official,1,low risk
+moderate,24,2892,little,7+ years,male:divorced/separated,51,for free,1,skilled employee / official,1,low risk
+no account,24,3062,high,7+ years,male:single,32,rent,1,skilled employee / official,1,low risk
+no account,9,2301,moderate,1 year,female:divorced/separated/married,22,rent,1,skilled employee / official,1,low risk
+none,18,7511,unknown,7+ years,male:single,51,for free,1,skilled employee / official,2,high risk
+no account,12,1258,little,1 year,female:divorced/separated/married,22,rent,2,unskilled,1,low risk
+no account,24,717,unknown,7+ years,male:married/widowed,54,own,2,skilled employee / official,1,low risk
+little,9,1549,unknown,1 year,male:single,35,own,1,unemployed,1,low risk
+no account,24,1597,little,7+ years,male:single,54,for free,2,skilled employee / official,2,low risk
+little,18,1795,little,7+ years,female:divorced/separated/married,48,rent,2,unskilled,1,low risk
+none,20,4272,little,7+ years,female:divorced/separated/married,24,own,2,skilled employee / official,1,low risk
+no account,12,976,unknown,7+ years,male:single,35,own,2,skilled employee / official,1,low risk
+little,12,7472,unknown,unemployed,female:divorced/separated/married,24,rent,1,unemployed,1,low risk
+none,36,9271,little,4 to 7 years,male:single,24,own,1,skilled employee / official,1,high risk
+little,6,590,little,1 year,male:married/widowed,26,own,1,unskilled,1,low risk
+no account,12,930,unknown,7+ years,male:single,65,own,4,skilled employee / official,1,low risk
+little,42,9283,little,unemployed,male:single,55,for free,1,management / highly skilled,1,low risk
+little,15,1778,little,1 year,female:divorced/separated/married,26,rent,2,unemployed,1,high risk
+little,8,907,little,1 year,male:married/widowed,26,own,1,skilled employee / official,1,low risk
+little,6,484,little,4 to 7 years,male:married/widowed,28,own,1,unskilled,1,low risk
+none,36,9629,little,4 to 7 years,male:single,24,own,2,skilled employee / official,1,high risk
+none,48,3051,little,1 to 4 years,male:single,54,own,1,skilled employee / official,1,high risk
+none,48,3931,little,4 to 7 years,male:single,46,for free,1,skilled employee / official,2,high risk
+little,36,7432,little,1 to 4 years,female:divorced/separated/married,54,rent,1,skilled employee / official,1,low risk
+no account,6,1338,high,1 to 4 years,male:divorced/separated,62,own,1,skilled employee / official,1,low risk
+no account,6,1554,little,4 to 7 years,female:divorced/separated/married,24,rent,2,skilled employee / official,1,low risk
+none,36,15857,little,unemployed,male:divorced/separated,43,own,1,management / highly skilled,1,low risk
+none,18,1345,little,1 to 4 years,male:married/widowed,26,own,1,skilled employee / official,1,high risk
+no account,12,1101,little,1 to 4 years,male:married/widowed,27,own,2,skilled employee / official,1,low risk
+moderate,12,3016,little,1 to 4 years,male:married/widowed,24,own,1,skilled employee / official,1,low risk
+none,36,2712,little,7+ years,male:single,41,own,1,skilled employee / official,2,high risk
+none,8,731,little,7+ years,male:single,47,own,2,unskilled,1,low risk
+no account,18,3780,little,1 year,male:divorced/separated,35,own,2,management / highly skilled,1,low risk
+none,21,1602,little,7+ years,male:married/widowed,30,own,2,skilled employee / official,1,low risk
+none,18,3966,little,7+ years,female:divorced/separated/married,33,rent,3,skilled employee / official,1,high risk
+no account,18,4165,little,1 to 4 years,male:single,36,own,2,skilled employee / official,2,high risk
+none,36,8335,unknown,7+ years,male:single,47,for free,1,skilled employee / official,1,high risk
+little,48,6681,unknown,1 to 4 years,male:single,38,for free,1,skilled employee / official,2,low risk
+no account,24,2375,high,1 to 4 years,male:single,44,own,2,skilled employee / official,2,low risk
+none,18,1216,little,1 year,female:divorced/separated/married,23,rent,1,skilled employee / official,1,high risk
+none,45,11816,little,7+ years,male:single,29,rent,2,skilled employee / official,1,high risk
+little,24,5084,unknown,7+ years,female:divorced/separated/married,42,own,1,skilled employee / official,1,low risk
+moderate,15,2327,little,1 year,female:divorced/separated/married,25,own,1,unskilled,1,high risk
+none,12,1082,little,1 to 4 years,male:single,48,own,2,skilled employee / official,1,high risk
+no account,12,886,unknown,1 to 4 years,female:divorced/separated/married,21,own,1,skilled employee / official,1,low risk
+no account,4,601,little,1 year,female:divorced/separated/married,23,rent,1,unskilled,2,low risk
+none,24,2957,little,7+ years,male:single,63,own,2,skilled employee / official,1,low risk
+no account,24,2611,little,7+ years,male:married/widowed,46,own,2,skilled employee / official,1,low risk
+none,36,5179,little,4 to 7 years,male:single,29,own,1,skilled employee / official,1,high risk
+no account,21,2993,little,1 to 4 years,male:single,28,own,2,unskilled,1,low risk
+no account,18,1943,little,1 year,female:divorced/separated/married,23,own,1,skilled employee / official,1,high risk
+no account,24,1559,little,4 to 7 years,male:single,50,own,1,skilled employee / official,1,low risk
+no account,18,3422,little,7+ years,male:single,47,own,3,skilled employee / official,2,low risk
+little,21,3976,unknown,4 to 7 years,male:single,35,own,1,skilled employee / official,1,low risk
+no account,18,6761,unknown,1 to 4 years,male:single,68,rent,2,skilled employee / official,1,high risk
+no account,24,1249,little,1 year,male:married/widowed,28,own,1,skilled employee / official,1,low risk
+none,9,1364,little,4 to 7 years,male:single,59,own,1,skilled employee / official,1,low risk
+none,12,709,little,7+ years,male:single,57,own,1,unskilled,1,high risk
+none,20,2235,little,1 to 4 years,male:married/widowed,33,rent,2,skilled employee / official,1,high risk
+no account,24,4042,unknown,4 to 7 years,male:single,43,own,2,skilled employee / official,1,low risk
+no account,15,1471,little,1 to 4 years,male:single,35,for free,2,skilled employee / official,1,low risk
+none,18,1442,little,4 to 7 years,male:single,32,for free,2,unskilled,2,high risk
+no account,36,10875,little,7+ years,male:single,45,own,2,skilled employee / official,2,low risk
+no account,24,1474,moderate,1 year,male:married/widowed,33,own,1,skilled employee / official,1,low risk
+no account,10,894,unknown,4 to 7 years,female:divorced/separated/married,40,own,1,skilled employee / official,1,low risk
+no account,15,3343,little,1 to 4 years,male:single,28,for free,1,skilled employee / official,1,low risk
+none,15,3959,little,1 to 4 years,female:divorced/separated/married,29,own,1,skilled employee / official,1,high risk
+no account,9,3577,moderate,1 to 4 years,male:single,26,rent,1,skilled employee / official,2,low risk
+no account,24,5804,very high,1 to 4 years,male:single,27,own,2,skilled employee / official,1,low risk
+no account,18,2169,little,1 to 4 years,male:married/widowed,28,own,1,skilled employee / official,1,high risk
+none,24,2439,little,1 year,female:divorced/separated/married,35,own,1,skilled employee / official,1,high risk
+no account,27,4526,very high,1 year,male:single,32,own,2,unskilled,2,low risk
+no account,10,2210,little,1 to 4 years,male:single,25,rent,1,unskilled,1,high risk
+no account,15,2221,high,1 to 4 years,female:divorced/separated/married,20,rent,1,skilled employee / official,1,low risk
+none,18,2389,little,1 year,female:divorced/separated/married,27,own,1,skilled employee / official,1,low risk
+no account,12,3331,little,7+ years,male:single,42,own,1,skilled employee / official,1,low risk
+no account,36,7409,unknown,7+ years,male:single,37,own,2,skilled employee / official,1,low risk
+none,12,652,little,7+ years,female:divorced/separated/married,24,rent,1,skilled employee / official,1,low risk
+no account,36,7678,high,4 to 7 years,female:divorced/separated/married,40,own,2,skilled employee / official,1,low risk
+moderate,6,1343,little,7+ years,male:single,46,own,2,skilled employee / official,2,low risk
+none,24,1382,moderate,4 to 7 years,male:single,26,own,2,skilled employee / official,1,low risk
+no account,15,874,unknown,1 year,female:divorced/separated/married,24,own,1,skilled employee / official,1,low risk
+none,12,3590,little,1 to 4 years,male:single,29,own,1,unskilled,2,low risk
+little,11,1322,very high,1 to 4 years,female:divorced/separated/married,40,own,2,skilled employee / official,1,low risk
+none,18,1940,little,1 year,male:single,36,for free,1,management / highly skilled,1,low risk
+no account,36,3595,little,7+ years,male:single,28,own,1,skilled employee / official,1,low risk
+none,9,1422,little,1 year,male:single,27,for free,1,management / highly skilled,1,high risk
+no account,30,6742,unknown,4 to 7 years,male:single,36,own,2,skilled employee / official,1,low risk
+no account,24,7814,little,4 to 7 years,male:single,38,own,1,management / highly skilled,1,low risk
+no account,24,9277,unknown,1 to 4 years,male:divorced/separated,48,for free,1,skilled employee / official,1,low risk
+little,30,2181,unknown,7+ years,male:single,36,own,2,skilled employee / official,1,low risk
+no account,18,1098,little,unemployed,female:divorced/separated/married,65,own,2,unemployed,1,low risk
+little,24,4057,little,4 to 7 years,male:divorced/separated,43,own,1,skilled employee / official,1,high risk
+none,12,795,little,1 year,female:divorced/separated/married,53,own,1,skilled employee / official,1,high risk
+little,24,2825,unknown,4 to 7 years,male:single,34,own,2,skilled employee / official,2,low risk
+little,48,15672,little,1 to 4 years,male:single,23,own,1,skilled employee / official,1,high risk
+no account,36,6614,little,7+ years,male:single,34,own,2,management / highly skilled,1,low risk
+no account,28,7824,unknown,1 year,male:single,40,rent,2,skilled employee / official,2,low risk
+none,27,2442,little,7+ years,male:single,43,own,4,management / highly skilled,2,low risk
+no account,15,1829,little,7+ years,male:single,46,own,2,skilled employee / official,1,low risk
+none,12,2171,little,1 to 4 years,male:single,38,own,2,unskilled,1,low risk
+little,36,5800,little,1 to 4 years,male:single,34,own,2,skilled employee / official,1,low risk
+no account,18,1169,unknown,1 to 4 years,male:single,29,own,2,skilled employee / official,1,low risk
+no account,36,8947,unknown,4 to 7 years,male:single,31,own,1,management / highly skilled,2,low risk
+none,21,2606,little,1 year,female:divorced/separated/married,28,rent,1,management / highly skilled,1,low risk
+no account,12,1592,very high,4 to 7 years,female:divorced/separated/married,35,own,1,skilled employee / official,1,low risk
+no account,15,2186,unknown,4 to 7 years,female:divorced/separated/married,33,rent,1,unskilled,1,low risk
+none,18,4153,little,1 to 4 years,male:single,42,own,1,skilled employee / official,1,high risk
+none,16,2625,little,7+ years,male:single,43,rent,1,skilled employee / official,1,high risk
+no account,20,3485,unknown,1 year,male:divorced/separated,44,own,2,skilled employee / official,1,low risk
+no account,36,10477,unknown,7+ years,male:single,42,for free,2,skilled employee / official,1,low risk
+no account,15,1386,unknown,1 to 4 years,male:married/widowed,40,rent,1,skilled employee / official,1,low risk
+no account,24,1278,little,7+ years,male:single,36,own,1,management / highly skilled,1,low risk
+none,12,1107,little,1 to 4 years,male:single,20,rent,1,management / highly skilled,2,low risk
+none,21,3763,unknown,4 to 7 years,male:single,24,own,1,unskilled,1,low risk
+little,36,3711,unknown,1 to 4 years,male:married/widowed,27,own,1,skilled employee / official,1,low risk
+no account,15,3594,little,1 year,female:divorced/separated/married,46,own,2,unskilled,1,low risk
+little,9,3195,unknown,1 to 4 years,female:divorced/separated/married,33,own,1,unskilled,1,low risk
+no account,36,4454,little,1 to 4 years,female:divorced/separated/married,34,own,2,skilled employee / official,1,low risk
+little,24,4736,little,1 year,female:divorced/separated/married,25,own,1,unskilled,1,high risk
+little,30,2991,unknown,7+ years,female:divorced/separated/married,25,own,1,skilled employee / official,1,low risk
+no account,11,2142,very high,7+ years,male:divorced/separated,28,own,1,skilled employee / official,1,low risk
+none,24,3161,little,1 to 4 years,male:single,31,rent,1,skilled employee / official,1,high risk
+little,48,18424,little,1 to 4 years,female:divorced/separated/married,32,own,1,management / highly skilled,1,high risk
+no account,10,2848,moderate,1 to 4 years,male:single,32,own,1,skilled employee / official,2,low risk
+none,6,14896,little,7+ years,male:single,68,own,1,management / highly skilled,1,high risk
+none,24,2359,moderate,unemployed,male:divorced/separated,33,own,1,skilled employee / official,1,high risk
+none,24,3345,little,7+ years,male:single,39,rent,1,management / highly skilled,1,high risk
+no account,18,1817,little,1 to 4 years,female:divorced/separated/married,28,own,2,skilled employee / official,1,low risk
+no account,48,12749,high,4 to 7 years,male:single,37,own,1,management / highly skilled,1,low risk
+none,9,1366,little,1 year,female:divorced/separated/married,22,rent,1,skilled employee / official,1,high risk
+little,12,2002,little,4 to 7 years,male:single,30,rent,1,skilled employee / official,2,low risk
+none,24,6872,little,1 year,male:divorced/separated,55,own,1,skilled employee / official,1,high risk
+none,12,697,little,1 year,male:single,46,own,2,skilled employee / official,1,high risk
+none,18,1049,little,1 year,female:divorced/separated/married,21,rent,1,skilled employee / official,1,low risk
+none,48,10297,little,4 to 7 years,male:single,39,for free,3,skilled employee / official,2,high risk
+no account,30,1867,unknown,7+ years,male:single,58,own,1,skilled employee / official,1,low risk
+none,12,1344,little,1 to 4 years,male:single,43,own,2,unskilled,2,low risk
+none,24,1747,little,1 year,male:single,24,own,1,unskilled,1,low risk
+little,9,1670,little,1 year,female:divorced/separated/married,22,own,1,skilled employee / official,1,high risk
+no account,9,1224,little,1 to 4 years,male:single,30,own,2,skilled employee / official,1,low risk
+no account,12,522,high,7+ years,male:single,42,own,2,skilled employee / official,2,low risk
+none,12,1498,little,1 to 4 years,female:divorced/separated/married,23,own,1,skilled employee / official,1,low risk
+little,30,1919,moderate,1 year,male:single,30,own,2,management / highly skilled,1,high risk
+moderate,9,745,little,1 to 4 years,female:divorced/separated/married,28,own,1,unskilled,1,high risk
+little,6,2063,little,1 year,male:married/widowed,30,rent,1,management / highly skilled,1,low risk
+little,60,6288,little,1 to 4 years,male:single,42,for free,1,skilled employee / official,1,high risk
+no account,24,6842,unknown,1 to 4 years,male:single,46,own,2,management / highly skilled,2,low risk
+no account,12,3527,unknown,1 year,male:single,45,own,1,management / highly skilled,2,low risk
+no account,10,1546,little,1 to 4 years,male:single,31,own,1,unskilled,2,low risk
+no account,24,929,unknown,4 to 7 years,male:single,31,own,1,skilled employee / official,1,low risk
+no account,4,1455,little,4 to 7 years,male:single,42,own,3,unskilled,2,low risk
+none,15,1845,little,1 year,female:divorced/separated/married,46,rent,1,skilled employee / official,1,low risk
+little,48,8358,high,1 year,female:divorced/separated/married,30,own,2,skilled employee / official,1,low risk
+none,24,3349,high,1 year,male:single,30,for free,1,skilled employee / official,2,high risk
+no account,12,2859,unknown,unemployed,male:single,38,own,1,management / highly skilled,1,low risk
+no account,18,1533,little,1 year,male:married/widowed,43,own,1,unskilled,2,high risk
+no account,24,3621,moderate,7+ years,male:single,31,own,2,skilled employee / official,1,high risk
+little,18,3590,little,unemployed,male:married/widowed,40,own,3,unemployed,2,low risk
+none,36,2145,little,4 to 7 years,male:single,24,own,2,skilled employee / official,1,high risk
+little,24,4113,high,1 year,female:divorced/separated/married,28,rent,1,skilled employee / official,1,high risk
+no account,36,10974,little,unemployed,female:divorced/separated/married,26,own,2,management / highly skilled,1,high risk
+none,12,1893,little,1 to 4 years,female:divorced/separated/married,29,own,1,skilled employee / official,1,low risk
+none,24,1231,very high,7+ years,female:divorced/separated/married,57,rent,2,management / highly skilled,1,low risk
+moderate,30,3656,unknown,7+ years,male:single,49,own,2,unskilled,1,low risk
+little,9,1154,little,7+ years,male:single,37,own,3,unskilled,1,low risk
+none,28,4006,little,1 to 4 years,male:single,45,own,1,unskilled,1,high risk
+little,24,3069,moderate,7+ years,male:single,30,for free,1,skilled employee / official,1,low risk
+no account,6,1740,little,7+ years,male:married/widowed,30,rent,2,skilled employee / official,1,low risk
+little,21,2353,little,1 to 4 years,male:divorced/separated,47,own,2,skilled employee / official,1,low risk
+no account,15,3556,unknown,1 to 4 years,male:single,29,own,1,skilled employee / official,1,low risk
+no account,24,2397,high,7+ years,male:single,35,own,2,skilled employee / official,1,high risk
+little,6,454,little,1 year,male:married/widowed,22,own,1,unskilled,1,low risk
+little,30,1715,unknown,1 to 4 years,female:divorced/separated/married,26,own,1,skilled employee / official,1,low risk
+little,27,2520,high,1 to 4 years,male:single,23,own,2,unskilled,1,high risk
+no account,15,3568,little,7+ years,female:divorced/separated/married,54,rent,1,management / highly skilled,1,low risk
+no account,42,7166,unknown,4 to 7 years,male:married/widowed,29,rent,1,skilled employee / official,1,low risk
+none,11,3939,little,1 to 4 years,male:single,40,own,2,unskilled,2,low risk
+little,15,1514,moderate,1 to 4 years,male:single,22,own,1,skilled employee / official,1,low risk
+no account,24,7393,little,1 to 4 years,male:single,43,own,1,unskilled,2,low risk
+none,24,1193,little,unemployed,female:divorced/separated/married,29,rent,2,unemployed,1,high risk
+none,60,7297,little,7+ years,male:single,36,rent,1,skilled employee / official,1,high risk
+no account,30,2831,little,1 to 4 years,female:divorced/separated/married,33,own,1,skilled employee / official,1,low risk
+moderate,24,1258,high,1 to 4 years,female:divorced/separated/married,57,own,1,unskilled,1,low risk
+little,6,753,little,1 to 4 years,female:divorced/separated/married,64,own,1,skilled employee / official,1,low risk
+little,18,2427,unknown,7+ years,male:single,42,own,2,skilled employee / official,1,low risk
+no account,24,2538,little,7+ years,male:single,47,own,2,unskilled,2,high risk
+little,15,1264,moderate,1 to 4 years,male:married/widowed,25,rent,1,skilled employee / official,1,high risk
+little,30,8386,little,4 to 7 years,male:single,49,own,1,skilled employee / official,1,high risk
+no account,48,4844,little,unemployed,male:single,33,rent,1,management / highly skilled,1,high risk
+moderate,21,2923,moderate,1 to 4 years,female:divorced/separated/married,28,own,1,management / highly skilled,1,low risk
+none,36,8229,little,1 to 4 years,male:single,26,own,1,skilled employee / official,2,high risk
+no account,24,2028,little,4 to 7 years,male:single,30,own,2,unskilled,1,low risk
+none,15,1433,little,1 to 4 years,female:divorced/separated/married,25,rent,2,skilled employee / official,1,low risk
+moderate,42,6289,little,1 year,male:divorced/separated,33,own,2,skilled employee / official,1,low risk
+no account,13,1409,moderate,unemployed,female:divorced/separated/married,64,own,1,skilled employee / official,1,low risk
+none,24,6579,little,unemployed,male:single,29,for free,1,management / highly skilled,1,low risk
+little,24,1743,little,7+ years,male:single,48,own,2,unskilled,1,low risk
+no account,12,3565,unknown,1 year,male:single,37,own,2,unskilled,2,low risk
+no account,15,1569,moderate,7+ years,male:single,34,own,1,unskilled,2,low risk
+none,18,1936,unknown,4 to 7 years,male:married/widowed,23,rent,2,unskilled,1,low risk
+none,36,3959,little,unemployed,male:single,30,own,1,management / highly skilled,1,low risk
+no account,12,2390,unknown,7+ years,male:single,50,own,1,skilled employee / official,1,low risk
+no account,12,1736,little,4 to 7 years,female:divorced/separated/married,31,own,1,unskilled,1,low risk
+none,30,3857,little,1 to 4 years,male:divorced/separated,40,own,1,management / highly skilled,1,low risk
+no account,12,804,little,7+ years,male:single,38,own,1,skilled employee / official,1,low risk
+none,45,1845,little,1 to 4 years,male:single,23,for free,1,skilled employee / official,1,high risk
+little,45,4576,moderate,unemployed,male:single,27,own,1,skilled employee / official,1,low risk
