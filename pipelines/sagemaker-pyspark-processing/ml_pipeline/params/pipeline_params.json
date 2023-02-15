@@ -1,0 +1,28 @@
+{
+  "pipeline_name": "ProcessingPipeline",
+  "trial": "test-blog-post",
+  "pipeline_role": "arn:aws:iam::<ACCOUNT_NUMBER>:role/<PIPELINE_EXECUTION_ROLE_NAME>",
+  "network_subnet_ids": [
+      "subnet-<SUBNET_ID>",
+      "subnet-<SUBNET_ID>"
+  ],
+  "network_security_group_ids": [
+      "sg-<SG_ID>"
+  ],
+  "pyspark_process_volume_kms": "arn:aws:kms:<REGION_NAME>:<ACCOUNT_NUMBER>:key/<KMS_KEY_ID>",
+  "pyspark_process_output_kms": "arn:aws:kms:<REGION_NAME>:<ACCOUNT_NUMBER>:key/<KMS_KEY_ID>",
+  "pyspark_helper_code": "s3://<INFRA_S3_BUCKET>/src/helper/data_utils.py",
+  "spark_config_file": "s3://<INFRA_S3_BUCKET>/src/spark_configuration/configuration.json",
+  "pyspark_process_code": "s3://<INFRA_S3_BUCKET>/src/processing/process_pyspark.py",
+  "process_spark_ui_log_output": "s3://<DATA_S3_BUCKET>/spark_ui_logs/{}",
+  "pyspark_framework_version": "2.4",
+  "pyspark_process_name": "pyspark-processing",
+  "pyspark_process_data_input": "s3a://<DATA_S3_BUCKET>/data_input/abalone_data.csv",
+  "pyspark_process_data_output": "s3a://<DATA_S3_BUCKET>/pyspark/data_output",
+  "pyspark_process_instance_type": "ml.m5.4xlarge",
+  "pyspark_process_instance_count": 6,
+  "tags": {
+    "Project": "tag-for-project",
+    "Owner": "tag-for-owner"
+  }
+}
