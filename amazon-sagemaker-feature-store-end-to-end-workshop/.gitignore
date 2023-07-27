@@ -182,7 +182,6 @@ temp.ipynb
 .virtual_documents
 .vscode*
 fns/libs
-data
 .aws-sam
 node_modules
 *.tgz
