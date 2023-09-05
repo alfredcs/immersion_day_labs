@@ -15,6 +15,8 @@ from gradio_client.client import DEFAULT_TEMP_DIR
 from text_generation import Client
 from transformers import AutoProcessor
 import boto3
+import shutil
+import uuid
 
 s3_client = boto3.client('s3')
 
@@ -121,7 +123,7 @@ for im_path in all_images:
     H = gr.Image(im_path, visible=False, type="filepath")
     tmp_filename = H.preprocess(H.value)
     #DEFAULT_IMAGES_TMP_PATH_TO_URL[tmp_filename] = f"https://huggingface.co/spaces/HuggingFaceM4/idefics_playground/resolve/main/example_images/{os.path.basename(im_path)}"
-    DEFAULT_IMAGES_TMP_PATH_TO_URL[tmp_filename] = f"/https://bedrock-415275363822.s3.us-east-1.amazonaws.com/uploads/{os.path.basename(im_path)}"
+    #DEFAULT_IMAGES_TMP_PATH_TO_URL[tmp_filename] = f"/https://bedrock-415275363822.s3.us-east-1.amazonaws.com/uploads/{os.path.basename(im_path)}"
     #print(f"The tem file path {DEFAULT_IMAGES_TMP_PATH_TO_URL[tmp_filename]}")
 
 
@@ -243,12 +245,17 @@ def handle_manual_images_in_user_prompt(user_prompt: str) -> List[str]:
 
 def gradio_link(img_path: str) -> str:
     #url = f"{GRADIO_LINK}/file={img_path}"
-    #url = f"{format(os.path.basename(image_path.name))}"
-    #url = f"{img_path}"
-    key_name = f'uploads/{os.path.basename(img_path)}'
-    bucket = 'bedrock-415275363822'
-    s3_client.upload_file(Filename=img_path, Bucket=bucket, Key=key_name)
-    return "https://{0}.s3.us-east-1.amazonaws.com/{1}".format(bucket, key_name)
+    #dst = "static"
+    myuuid = str(uuid.uuid4())[-12:]
+    file_name = f"{format(os.path.basename(img_path))}"
+    new_file_name =str(img_path)[5:]
+    #shutil.copyfile(img_path,f"/home/alfred/utils/uploads/{file_name}")
+    url = f"http://cavatar.info:8080/"
+    #key_name = f'uploads/{os.path.basename(img_path)}'
+    #bucket = 'bedrock-415275363822'
+    #s3_client.upload_file(Filename=img_path, Bucket=bucket, Key=key_name)
+    #return "https:////{0}.s3.us-east-1.amazonaws.com/{1}".format(bucket, key_name)
+    return f'{url}/{new_file_name}'
 
 
 def prompt_list_to_markdown(prompt_list: List[str]) -> str:
@@ -282,6 +289,7 @@ def prompt_list_to_tgi_input(prompt_list: List[str]) -> str:
                 result_string_input += f"![]({gradio_link(img_path=elem)})"
         else:
             result_string_input += elem
+    print(result_string_input)
     return result_string_input
 
 
@@ -349,18 +357,16 @@ textbox = gr.Textbox(
     label="Text input",
     scale=6,
 )
-with gr.Blocks(title="DocAid Playground", theme=gr.themes.Base()) as demo:
-    gr.HTML("""<h1 align="center">DocAid Playground</h1>""")
+with gr.Blocks(title="RadAide Playground", theme=gr.themes.Base()) as demo:
+    gr.HTML("""<h1 align="center">RadAide Playground</h1>""")
     with gr.Row(variant="panel"):
         with gr.Column(scale=1):
-            gr.Image(DocAid_logo, elem_id="banner-image", show_label=False, show_download_button=False)
-        with gr.Column(scale=5):
+            gr.Image(DocAid_logo, elem_id="banner-image", show_label=False, show_download_button=False).style(height=200, width=100)
+        with gr.Column(scale=4):
             gr.HTML("""
-                <p>This demo showcases <strong>IDEFICS</strong>, a open-access large visual language model. Like GPT-4, the multimodal model accepts arbitrary sequences of image and text inputs and produces text outputs. IDEFICS can answer questions about images, describe visual content, create stories grounded in multiple images, etc.</p>
-                <p>IDEFICS (which stands for <strong>I</strong>mage-aware <strong>D</strong>ecoder <strong>E</strong>nhanced à la <strong>F</strong>lamingo with <strong>I</strong>nterleaved <strong>C</strong>ross-attention<strong>S</strong>) is an open-access reproduction of <a href="https://huggingface.co/papers/2204.14198">Flamingo</a>, a closed-source visual language model developed by Deepmind. IDEFICS was built solely on publicly available data and models. It is currently the only visual language model of this scale (80 billion parameters) that is available in open-access.</p>
-                <p>📚 The variants available in this demo were fine-tuned on a mixture of supervised and instruction fine-tuning datasets to make the models more suitable in conversational settings. For more details, we refer to our <a href="https://huggingface.co/blog/idefics">blog post</a>.</p>
-                <p>🅿️ <strong>Intended uses:</strong> This demo along with the <a href="https://huggingface.co/models?sort=trending&amp;search=HuggingFaceM4%2Fidefics">supporting models</a> are provided as research artifacts to the community. We detail misuses and out-of-scope uses <a href="https://huggingface.co/HuggingFaceM4/idefics-80b#misuse-and-out-of-scope-use">here</a>.</p>
-                <p>⛔️ <strong>Limitations:</strong> The model can produce factually incorrect texts, hallucinate facts (with or without an image) and will struggle with small details in images. While the model will tend to refuse answering questionable user requests, it can produce problematic outputs (including racist, stereotypical, and disrespectful texts), in particular when prompted to do so. We encourage users to read our findings from evaluating the model for potential biases in the <a href="https://huggingface.co/HuggingFaceM4/idefics-80b#bias-evaluation">model card</a>.</p>
+                <p>Experience the future of radiology with our groundbreaking Radiologist Assistant. Powered by ALPRAD, a multimodality model fine tuned from IDEFICS and medical image datatsets using QLora FEFT, our innovative technology takes screening to the next level. This advanced system enhances the accuracy and efficiency of radiological screening, providing healthcare professionals with unparalleled support in diagnosing and detecting medical conditions. Join us on the journey to redefine radiology and improve patient care through generative AI</p>
+                <p>📚 In this demonstration, the ALPRAD model underwent fine-tuning using a blend of both supervised and instruction-based fine-tuning datasets comprising ~220K  medical records, leveraging FEFT/QLora to enhance the model's suitability for comprehending radiological images presented in a conversational format. The model currently consists of 9 billion parameters, and a larger model with 70 billion parameters will be released in the near future. </p>
+                <p>⛔️ <strong>Limitations:</strong>he playground exclusively caters to PoC (Prove of Concept). The model may generate inaccuracies in its text, fabricate information (with or without visual aids), and encounter difficulties when dealing with minor details within images.</p> 
             """)
 
     # with gr.Row():
@@ -387,7 +393,7 @@ with gr.Blocks(title="DocAid Playground", theme=gr.themes.Base()) as demo:
 
         chatbot = gr.Chatbot(
             elem_id="chatbot",
-            label="IDEFICS",
+            label="ALPRAD",
             visible=True,
             height=750,
             avatar_images=[None, None]
@@ -559,7 +565,6 @@ with gr.Blocks(title="DocAid Playground", theme=gr.themes.Base()) as demo:
             )
 
         query = prompt_list_to_tgi_input(formated_prompt_list)
-        print(query)
         stream = client.generate_stream(prompt=query, **generation_args)
 
         acc_text = ""
@@ -796,25 +801,33 @@ with gr.Blocks(title="DocAid Playground", theme=gr.themes.Base()) as demo:
     #     The second syntax allows inputting an arbitrary number of images.""")
 
     examples_path = os.path.dirname(__file__)
+    examples_path = os.getcwd()
     gr.Examples(
         examples=[
             [
                 (
-                    "Which famous person does the person in the image look like? Could you craft an engaging narrative"
-                    " featuring this character from the image as the main protagonist?"
+                    "Describe the type of this image and ots primary usage? Could you craft a clinical report as if you a a Radiologist?"
                 ),
-                f"{examples_path}/example_images/obama-harry-potter.jpg",
+                f"{examples_path}/example_images/chest-ct.jpg",
             ],
             [
-                "Can you describe the image? Do you think it's real?",
-                f"{examples_path}/example_images/rabbit_force.png",
+                "How was this image produced? Are there any lesions or abnormalitues shown from this scan?",
+                f"{examples_path}/example_images/lateral-mammogram-of-female-breast-with-tumor.jpg",
+            ],
+            [
+                "Name the nature of this image and its primary purpose comparing with a CT scan? Are there any lesions or abnormalitues shown from this scan?",
+                f"{examples_path}/example_images/mri_brain_sclerosis.jpg",
+            ],
+            [
+                "What the procedure name to product this image? As a Radiologist will you be able to make any preliminary diagnosis from it?",
+                f"{examples_path}/example_images/images_large_liver_scan_ultrasound.jpg",
             ]
         ],
         inputs=[textbox, imagebox],
         outputs=[textbox, imagebox, chatbot],
         fn=process_example,
         cache_examples=True,
-        examples_per_page=6,
+        examples_per_page=5,
         label=(
             "Click on any example below to get started.\nFor convenience, the model generations have been"
             " pre-computed with `idefics-9b-instruct`."
