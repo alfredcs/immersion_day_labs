@@ -16,6 +16,28 @@ from text_generation import Client
 from transformers import AutoProcessor
 import boto3
 import whisper
+import base64
+# For dino_sam segementation
+import copy
+import cv2
+import torch
+import matplotlib.pyplot as plt
+import dino_sam_inpainting as D
+
+
+# Dino SAM cfg
+config_file = 'GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py'  # change the path of the model config file
+grounded_checkpoint = './models/groundingdino_swint_ogc.pth'  # change the path of the model
+sam_checkpoint = './models/sam_vit_h_4b8939.pth'
+sam_hq_checkpoint = '' #sam_hq_vit_h.pth
+use_sam_hq = ''
+#    image_path = image_path
+#    text_prompt = text_prompt
+output_dir = './outputs'
+#    box_threshold = box_threshold
+#    text_threshold = text_threshold
+device = 'cuda'
+
 
 
 s3_client = boto3.client('s3')
@@ -72,6 +94,7 @@ STOP_SUSPECT_LIST = []
 
 #GRADIO_LINK = "https://huggingfacem4-idefics-playground.hf.space"
 GRADIO_LINK = "http://0.0.0.0:7863"
+HTTPD_URL = "http://radaide.cavatar.info:8080/"
 API_TOKEN = os.getenv("hf_api_token")
 IDEFICS_LOGO = "https://huggingface.co/spaces/HuggingFaceM4/idefics_playground/resolve/main/IDEFICS_logo.png"
 DocAid_logo = "example_images/medicine.png"
@@ -82,7 +105,7 @@ PROCESSOR = AutoProcessor.from_pretrained(
 )
 
 BOT_AVATAR = "IDEFICS_logo.png"
-BOT_AVATAR = ""
+BOT_AVATAR = None
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
@@ -109,6 +132,80 @@ def pil_to_temp_file(img: PIL.Image.Image, dir: str = DEFAULT_TEMP_DIR, format: 
 def add_file(file):
     return file.name, gr.update(label='🖼️ Uploaded!')
     
+
+# Dino SAM
+def dino_sam(image_path, text_prompt, text_threshold=0.4, box_threshold=0.5, output_dir='/temp/gradio/outputs'):
+    config_file = 'GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py'  # change the path of the model config file
+    grounded_checkpoint = './models/groundingdino_swint_ogc.pth'  # change the path of the model
+    sam_checkpoint = './models/sam_vit_h_4b8939.pth'
+    sam_hq_checkpoint = '' #sam_hq_vit_h.pth
+    use_sam_hq = ''
+    output_dir = '/tmp/gradio/outputs'
+    device = 'cuda'
+
+    # make dir
+    os.makedirs(output_dir, exist_ok=True)
+    # load image
+    image_pil, image = D.load_image(image_path)
+    # load model
+    model = D.load_model(config_file, grounded_checkpoint, device=device)
+
+    output_file_name = f'{format(os.path.basename(image_path))}'
+
+    # visualize raw image
+    image_pil.save(os.path.join(output_dir, output_file_name))
+
+    # run grounding dino model
+    boxes_filt, pred_phrases = D.get_grounding_output(
+        model, image, text_prompt, box_threshold, text_threshold, device=device
+    )
+
+    # initialize SAM
+    if use_sam_hq:
+        predictor = D.SamPredictor(D.build_sam_hq(checkpoint=sam_hq_checkpoint).to(device))
+    else:
+        predictor = D.SamPredictor(D.build_sam(checkpoint=sam_checkpoint).to(device))
+    image = cv2.imread(image_path)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    predictor.set_image(image)
+
+    size = image_pil.size
+    H, W = size[1], size[0]
+    for i in range(boxes_filt.size(0)):
+        boxes_filt[i] = boxes_filt[i] * torch.Tensor([W, H, W, H])
+        boxes_filt[i][:2] -= boxes_filt[i][2:] / 2
+        boxes_filt[i][2:] += boxes_filt[i][:2]
+
+    boxes_filt = boxes_filt.cpu()
+    transformed_boxes = predictor.transform.apply_boxes_torch(boxes_filt, image.shape[:2]).to(device)
+
+    masks, _, _ = predictor.predict_torch(
+        point_coords = None,
+        point_labels = None,
+        boxes = transformed_boxes.to(device),
+        multimask_output = False,
+    )
+
+    # draw output image
+    plt.figure(figsize=(10, 10))
+    plt.imshow(image)
+    for mask in masks:
+        D.show_mask(mask.cpu().numpy(), plt.gca(), random_color=True)
+    for box, label in zip(boxes_filt, pred_phrases):
+        D.show_box(box.numpy(), plt.gca(), label)
+
+    output_file_name = f'{format(os.path.basename(image_path))}'
+    plt.axis('off')
+    plt.savefig(
+        os.path.join(output_dir, f'grounded_sam_{output_file_name}'),
+        bbox_inches="tight", dpi=300, pad_inches=0.0
+    )
+
+    D.save_mask_data(output_dir, masks, boxes_filt, pred_phrases)
+    return f'grounded_sam_{output_file_name}'
+
+
+
 
 # This is a hack to make pre-computing the default examples work.
 # During normal inference, we pass images as url to a local file using the method `gradio_link`
@@ -251,9 +348,8 @@ def gradio_link(img_path: str) -> str:
     new_file_name =str(img_path)[12:]
     #bucket = 'bedrock-415275363822'
     #s3_client.upload_file(Filename=img_path, Bucket=bucket, Key=key_name)
-    url = f"http://radaide.cavatar.info:8080/"
-    #url = f'http://cavatar.info:8080/'
-    return f'{url}{new_file_name}'
+    #url = f"http://radaide.cavatar.info:8080/"
+    return f'{HTTPD_URL}{new_file_name}'
     #return "https://{0}.s3.us-east-1.amazonaws.com/{1}".format(bucket, key_name)
 
 
@@ -393,10 +489,10 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
 
         chatbot = gr.Chatbot(
             elem_id="chatbot",
-            label="IDEFICS",
+            label="Multimodal",
             visible=True,
             height=750,
-            avatar_images=[None, None]
+            avatar_images=[None, BOT_AVATAR]
             #                 value=[
             #                     [
             #                         (
@@ -421,7 +517,7 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
         )
 
     with gr.Group():
-        with gr.Row().style(equal_height=True):
+        with gr.Row():
             with gr.Column():
                 textbox.render()
             with gr.Column():
@@ -430,7 +526,7 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
                         show_label=True,
                         source="microphone",
                         type="filepath")
-        with gr.Row().style(equal_height=True):
+        with gr.Row():
                 #textbox.render()
                 submit_btn = gr.Button(value="▶️  Submit", visible=True)
                 clear_btn = gr.ClearButton([textbox, imagebox, chatbot], value="🧹 Clear")
@@ -630,8 +726,7 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
         top_p,
     ):
         user_prompt_str = asr_inference(audio)
-        if "mask" in user_prompt_str:
-                image = "./outputs/grounded_sam_chicken_on_money.png"
+        acc_text = ""
         if user_prompt_str.strip() == "" and image is None:
             return "", None, chat_history
 
@@ -665,10 +760,20 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
             generation_args["temperature"] = temperature
             generation_args["do_sample"] = True
             generation_args["top_p"] = top_p
-
+        mask_filename = None
         if image is None:
-            # Case where there is no image OR the image is passed as `<fake_token_around_image><image:IMAGE_URL><fake_token_around_image>`
-            chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
+            if "mask" in user_prompt_str:
+                filename = dino_sam(image_path='./outputs/demo8.jpg', text_prompt="frog only", output_dir='/temp/gradio/outputs', box_threshold=0.65, text_threshold=0.55)
+                mask_filename = f'[Generated image]({HTTPD_URL}outputs/{filename})'
+                chat_history.append(
+                    [
+                        #f"{prompt_list_to_markdown(user_prompt_list + ['[ -> Generated image](http://radaide.cavatar.info:8080/outputs/mask_filename)'])}",
+                        f"{prompt_list_to_markdown(user_prompt_list + [mask_filename])}",
+                        '',
+                    ]
+                )
+            else:
+               chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
         else:
             # Case where the image is passed through the Image Box.
             # Convert the image into base64 for both passing it through the chat history and
@@ -681,35 +786,57 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
             )
 
         query = prompt_list_to_tgi_input(formated_prompt_list)
-        print(query)
         stream = client.generate_stream(prompt=query, **generation_args)
+        '''
+        # Insert an image if needed
+        if "mask" in user_prompt_str:
+            #chat_history.append(['(None, ("./outputs/mask.jpg",)),'])
+            #chat_history.append(['![](./outputs/mask.jpg)', ''])
+            #new_image = gr.Image(type='pil', valur="./outputs/msk.jpg", height=256, width=256)
+            #with open("./outputs/mask.jpg", "rb") as f:
+            #    image_base64 = base64.b64encode(f.read())
+            #chat_history.pop(-1)
+            #chat_history.append([None, './outputs/mask.jpg'])
+            # Example 2: Replace list using lambda function
+            chat_history = list(map(lambda x: x.replace('BOT_AVATAR', './outputs/mask.jpg'), chat_history))
+            #chat_history = [item.replace("BOT_AVATAR", "./outputs/mask.jpg") for item in chat_history]
+            #imagebox = f"![]({HTTPD_URL}outputs/mask.jpg)"
+            #acc_text += f'\n [I am here.]\n'
+            #image = gr.Image(f"{HTTPD_URL}outputs/mask.jpg")
+        '''
 
-        acc_text = ""
-        for idx, response in enumerate(stream):
-            text_token = response.token.text
-
-            if response.details:
-                # That's the exit condition
-                return
-
-            if text_token in STOP_SUSPECT_LIST:
-                acc_text += text_token
-                continue
-
-            if idx == 0 and text_token.startswith(" "):
-                text_token = text_token.lstrip()
-
-            acc_text += text_token
-            last_turn = chat_history.pop(-1)
-            last_turn[-1] += acc_text
-            if last_turn[-1].endswith("\nUser"):
-                # Safeguard: sometimes (rarely), the model won't generate the token `<end_of_utterance>` and will go directly to generating `\nUser:`
-                # It will thus stop the generation on `\nUser:`. But when it exits, it will have already generated `\nUser`
-                # This post-processing ensures that we don't have an additional `\nUser` wandering around.
-                last_turn[-1] = last_turn[-1][:-5]
-            chat_history.append(last_turn)
+        #acc_text = ""
+        if mask_filename is not None:
+            #chat_history.pop(-1)
+            #chat_history.append([mask_filename])
+            print(type(chat_history))
             yield "", None, chat_history
-            acc_text = ""
+        else:
+            for idx, response in enumerate(stream):
+                text_token = response.token.text
+
+                if response.details:
+                    # That's the exit condition
+                    return
+
+                if text_token in STOP_SUSPECT_LIST:
+                    acc_text += text_token
+                    continue
+
+                if idx == 0 and text_token.startswith(" "):
+                    text_token = text_token.lstrip()
+
+                acc_text += text_token
+                last_turn = chat_history.pop(-1)
+                last_turn[-1] += acc_text
+                if last_turn[-1].endswith("\nUser"):
+                    # Safeguard: sometimes (rarely), the model won't generate the token `<end_of_utterance>` and will go directly to generating `\nUser:`
+                    # It will thus stop the generation on `\nUser:`. But when it exits, it will have already generated `\nUser`
+                    # This post-processing ensures that we don't have an additional `\nUser` wandering around.
+                    last_turn[-1] = last_turn[-1][:-5]
+                chat_history.append(last_turn)
+                yield "", None, chat_history
+                acc_text = ""
 
     def process_example(message, image):
         """
@@ -942,15 +1069,23 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
         examples=[
             [
                 (
-                    "Which famous person does the person in the image look like? Could you craft an engaging narrative"
-                    " featuring this character from the image as the main protagonist?"
+                    "Which device produced this image? Please explain the main clinical purpose of such image?"
+                    "Can you write a radiology report based on this image?"
                 ),
-                f"{examples_path}/example_images/obama-harry-potter.jpg",
+                f"{examples_path}/example_images/chest-ct.jpg",
             ],
             [
-                "Can you describe the image? Do you think it's real?",
-                f"{examples_path}/example_images/rabbit_force.png",
-            ]
+                "Can you describe the nature of this image? Do you think it's real?",
+                f"{examples_path}/example_images/fashion_12.jpg",
+            ],
+            [
+                "Can you describe the action on this image? How many animals total are there in this image? Please identify the species by name with best effort.",
+                f"{examples_path}/example_images/assets/demo8.jpg",
+            ],
+            [
+                "Name the sport from this image? Please identify the player's role by name with best effort.",
+                f"{examples_path}/example_images/college_football.jpg",
+            ],
         ],
         inputs=[textbox, imagebox],
         outputs=[textbox, imagebox, chatbot],
@@ -1062,4 +1197,4 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
     '''
 
 demo.queue(concurrency_count=40, max_size=40)
-demo.launch(debug=True, server_name="0.0.0.0", server_port=7863, height=2048, share=False, ssl_verify=False, ssl_keyfile="/home/alfred/utils/cavatar.key", ssl_certfile="/home/alfred/utils/cavatar.pem")
+demo.launch(debug=True, server_name="0.0.0.0", server_port=7864, height=2048, share=False, ssl_verify=False, ssl_keyfile="/home/alfred/utils/cavatar.key", ssl_certfile="/home/alfred/utils/cavatar.pem")
