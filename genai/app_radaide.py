@@ -23,7 +23,10 @@ import cv2
 import torch
 import matplotlib.pyplot as plt
 import dino_sam_inpainting as D
+# Keyword extraction
+from keybert import KeyBERT
 
+kw_model = KeyBERT()
 
 # Dino SAM cfg
 config_file = 'GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py'  # change the path of the model config file
@@ -62,8 +65,7 @@ API_PATHS = {
 }
 
 SYSTEM_PROMPT = [
-    """The following is a conversation between a highly knowledgeable and intelligent visual AI assistant, called Assistant, and a human user, called User. In the following interactions, User and Assistant will converse in natural language, and Assistant will do its best to answer User’s questions. Assistant has the ability to perceive images and reason about the content of visual inputs. Assistant was built to be respectful, polite and inclusive. It knows a lot, and always tells the truth. When prompted with an image, it does not make up facts.
-The conversation begins:""",
+    """"The following is a conversation between a highly knowledgeable and intelligent visual AI assistant, called Assistant, and a human user, called User. In the following interactions, User and Assistant will converse in natural language, and Assistant will do its best to answer User’s questions. Assistant has the ability to perceive images and reason about the content of visual inputs. Assistant was built to be respectful, polite and inclusive. It knows a lot, and always tells the truth. When prompted with an image, it does not make up facts. The conversation begins:""",
     """\nUser:""",
     "https://upload.wikimedia.org/wikipedia/commons/a/ad/CT_Scan_General_Illustration.jpg"
     "Describe this image.<end_of_utterance>",
@@ -98,6 +100,7 @@ HTTPD_URL = "http://radaide.cavatar.info:8080/"
 API_TOKEN = os.getenv("hf_api_token")
 IDEFICS_LOGO = "https://huggingface.co/spaces/HuggingFaceM4/idefics_playground/resolve/main/IDEFICS_logo.png"
 DocAid_logo = "example_images/medicine.png"
+global orig_image_path
 
 PROCESSOR = AutoProcessor.from_pretrained(
     "HuggingFaceM4/idefics-9b-instruct",
@@ -349,6 +352,7 @@ def gradio_link(img_path: str) -> str:
     #bucket = 'bedrock-415275363822'
     #s3_client.upload_file(Filename=img_path, Bucket=bucket, Key=key_name)
     #url = f"http://radaide.cavatar.info:8080/"
+    orig_image_path = img_path
     return f'{HTTPD_URL}{new_file_name}'
     #return "https://{0}.s3.us-east-1.amazonaws.com/{1}".format(bucket, key_name)
 
@@ -455,14 +459,12 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
     gr.HTML("""<h1 align="center">Multimodal Playground</h1>""")
     with gr.Row(variant="panel"):
         with gr.Column(scale=1):
-            gr.Image(DocAid_logo, elem_id="banner-image", show_label=False, show_download_button=False)
+            gr.Image(DocAid_logo, elem_id="banner-image", show_label=False, show_download_button=False, height=200, weight=100)
         with gr.Column(scale=5):
             gr.HTML("""
-                <p>This demo showcases <strong>IDEFICS</strong>, a open-access large visual language model. Like GPT-4, the multimodal model accepts arbitrary sequences of image and text inputs and produces text outputs. IDEFICS can answer questions about images, describe visual content, create stories grounded in multiple images, etc.</p>
-                <p>IDEFICS (which stands for <strong>I</strong>mage-aware <strong>D</strong>ecoder <strong>E</strong>nhanced à la <strong>F</strong>lamingo with <strong>I</strong>nterleaved <strong>C</strong>ross-attention<strong>S</strong>) is an open-access reproduction of <a href="https://huggingface.co/papers/2204.14198">Flamingo</a>, a closed-source visual language model developed by Deepmind. IDEFICS was built solely on publicly available data and models. It is currently the only visual language model of this scale (80 billion parameters) that is available in open-access.</p>
-                <p>📚 The variants available in this demo were fine-tuned on a mixture of supervised and instruction fine-tuning datasets to make the models more suitable in conversational settings. For more details, we refer to our <a href="https://huggingface.co/blog/idefics">blog post</a>.</p>
-                <p>🅿️ <strong>Intended uses:</strong> This demo along with the <a href="https://huggingface.co/models?sort=trending&amp;search=HuggingFaceM4%2Fidefics">supporting models</a> are provided as research artifacts to the community. We detail misuses and out-of-scope uses <a href="https://huggingface.co/HuggingFaceM4/idefics-80b#misuse-and-out-of-scope-use">here</a>.</p>
-                <p>⛔️ <strong>Limitations:</strong> The model can produce factually incorrect texts, hallucinate facts (with or without an image) and will struggle with small details in images. While the model will tend to refuse answering questionable user requests, it can produce problematic outputs (including racist, stereotypical, and disrespectful texts), in particular when prompted to do so. We encourage users to read our findings from evaluating the model for potential biases in the <a href="https://huggingface.co/HuggingFaceM4/idefics-80b#bias-evaluation">model card</a>.</p>
+                <p>📚 The demo presents <strong>IDEFICS</strong>, an open-access multimodality model fine tuned from Deepmind's <a href="https://huggingface.co/papers/2204.14198">Flamingo</a> that processes both image and text inputs to produce textual outputs.</p>
+                <p>🅿️ <strong>Intended uses:</strong> This demo serves as a proof of concept for multimodal generation. To prepare it for production, further refinement, including fine-tuning and expert evaluation, is necessary.</p>
+                <p>⛔️ <strong>Limitations:</strong> The model might generate inaccurate information, invent details from images or text, and often overlooks minute image details. Although it generally avoids responding to dubious user queries, it can still produce outputs that may be racist, stereotypical, or offensive, especially when specifically prompted.</p>
             """)
 
     # with gr.Row():
@@ -750,6 +752,10 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
             "stop_sequences": EOS_STRINGS,
         }
 
+        print(f'Chat_history:{type(chat_history)} and the 1st {chat_history[0]}')
+        orig_image_path = re.findall('\((.*?)\)', chat_history[0][0])[0].split('=')[1]
+        print(f'...... and the image_path {orig_image_path}')
+
         assert decoding_strategy in [
             "Greedy",
             "Top P Sampling",
@@ -762,13 +768,22 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
             generation_args["top_p"] = top_p
         mask_filename = None
         if image is None:
-            if "mask" in user_prompt_str:
-                filename = dino_sam(image_path='./outputs/demo8.jpg', text_prompt="frog only", output_dir='/temp/gradio/outputs', box_threshold=0.65, text_threshold=0.55)
-                mask_filename = f'[Generated image]({HTTPD_URL}outputs/{filename})'
+            words_list = kw_model.extract_keywords(docs=user_prompt_str, keyphrase_ngram_range=(1,3))
+            words_list = [*words_list[0],][0].split()
+            print(f'{words_list} and with type {type(words_list)}')
+            stopwords = ['mask', 'create', 'generate', 'image', 'picture', 'photo']
+            top_word = [i for i in words_list if i not in stopwords][0]
+            if "mask" in user_prompt_str and orig_image_path is not None:
+                print(f'Here {orig_image_path} with mask promt {top_word} !')
+                filename = dino_sam(image_path=orig_image_path, text_prompt=top_word, output_dir='/temp/gradio/outputs', box_threshold=0.5, text_threshold=0.55)
+                view_mask_filename = f' [View generated image]({HTTPD_URL}outputs/{filename})'
+                mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
                 chat_history.append(
                     [
                         #f"{prompt_list_to_markdown(user_prompt_list + ['[ -> Generated image](http://radaide.cavatar.info:8080/outputs/mask_filename)'])}",
-                        f"{prompt_list_to_markdown(user_prompt_list + [mask_filename])}",
+                        #OK f"{prompt_list_to_markdown(user_prompt_list + [mask_filename])}",
+                        f"{prompt_list_to_markdown(user_prompt_list + [view_mask_filename] + [mask_filename])}",
+                        #f"{'![](/file=/temp/gradio/outputs/{filename})'+ prompt_list_to_markdown(user_prompt_list)}",
                         '',
                     ]
                 )
@@ -787,29 +802,8 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
 
         query = prompt_list_to_tgi_input(formated_prompt_list)
         stream = client.generate_stream(prompt=query, **generation_args)
-        '''
-        # Insert an image if needed
-        if "mask" in user_prompt_str:
-            #chat_history.append(['(None, ("./outputs/mask.jpg",)),'])
-            #chat_history.append(['![](./outputs/mask.jpg)', ''])
-            #new_image = gr.Image(type='pil', valur="./outputs/msk.jpg", height=256, width=256)
-            #with open("./outputs/mask.jpg", "rb") as f:
-            #    image_base64 = base64.b64encode(f.read())
-            #chat_history.pop(-1)
-            #chat_history.append([None, './outputs/mask.jpg'])
-            # Example 2: Replace list using lambda function
-            chat_history = list(map(lambda x: x.replace('BOT_AVATAR', './outputs/mask.jpg'), chat_history))
-            #chat_history = [item.replace("BOT_AVATAR", "./outputs/mask.jpg") for item in chat_history]
-            #imagebox = f"![]({HTTPD_URL}outputs/mask.jpg)"
-            #acc_text += f'\n [I am here.]\n'
-            #image = gr.Image(f"{HTTPD_URL}outputs/mask.jpg")
-        '''
 
-        #acc_text = ""
         if mask_filename is not None:
-            #chat_history.pop(-1)
-            #chat_history.append([mask_filename])
-            print(type(chat_history))
             yield "", None, chat_history
         else:
             for idx, response in enumerate(stream):
@@ -1197,4 +1191,4 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
     '''
 
 demo.queue(concurrency_count=40, max_size=40)
-demo.launch(debug=True, server_name="0.0.0.0", server_port=7864, height=2048, share=False, ssl_verify=False, ssl_keyfile="/home/alfred/utils/cavatar.key", ssl_certfile="/home/alfred/utils/cavatar.pem")
+demo.launch(debug=True, server_name="0.0.0.0", server_port=7863, height=2048, share=False, ssl_verify=False, ssl_keyfile="/home/alfred/utils/cavatar.key", ssl_certfile="/home/alfred/utils/cavatar.pem")
