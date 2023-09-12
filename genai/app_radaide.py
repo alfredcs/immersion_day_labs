@@ -23,6 +23,9 @@ import cv2
 import torch
 import matplotlib.pyplot as plt
 import dino_sam_inpainting as D
+# Multiclass classification
+import multi_class as M
+
 # Keyword extraction
 from keybert import KeyBERT
 
@@ -659,8 +662,29 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
             generation_args["top_p"] = top_p
 
         if image is None:
-            # Case where there is no image OR the image is passed as `<fake_token_around_image><image:IMAGE_URL><fake_token_around_image>`
-            chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
+            ## By Alfred
+            words_list = kw_model.extract_keywords(docs=user_prompt_str, keyphrase_ngram_range=(1,3))
+            words_list = [*words_list[0],][0].split()
+            orig_image_path = re.findall('\((.*?)\)', chat_history[0][0])[0].split('=')[1]
+            print(f'{words_list} and with type {type(words_list)}')
+            stopwords = ['mask', 'mark', 'edge' 'segment', 'segmentation', 'cut', 'create', 'generate', 'image', 'picture', 'photo']
+            top_word = [i for i in words_list if i not in stopwords][0]
+            top_n = M.mclass(text_prompt=user_prompt_str, topics=['Others', 'Create mask', 'Image segmentation'], top_k=1)
+            for label, score in top_n:
+                print(f'With label: {label} and score: {score}')
+                if ('Create mask' in label or 'Image segmentation' in label) and orig_image_path is not None:
+                    filename = dino_sam(image_path=orig_image_path, text_prompt=top_word, output_dir='/temp/gradio/outputs', box_threshold=0.5, text_threshold=0.55)
+                    view_mask_filename = f' [View generated image]({HTTPD_URL}outputs/{filename})'
+                    mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
+                    chat_history.append(
+                        [
+                            f"{prompt_list_to_markdown(user_prompt_list + [view_mask_filename] + [mask_filename])}",
+                            '',
+                        ]
+                    )
+                else:
+                    # Alfred Case where there is no image OR the image is passed as `<fake_token_around_image><image:IMAGE_URL><fake_token_around_image>`
+                    chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
         else:
             # Case where the image is passed through the Image Box.
             # Convert the image into base64 for both passing it through the chat history and
@@ -771,9 +795,9 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
             words_list = kw_model.extract_keywords(docs=user_prompt_str, keyphrase_ngram_range=(1,3))
             words_list = [*words_list[0],][0].split()
             print(f'{words_list} and with type {type(words_list)}')
-            stopwords = ['mask', 'create', 'generate', 'image', 'picture', 'photo']
+            stopwords = ['mask', 'create', 'generate', 'image', 'cut', 'edge', 'picture', 'photo']
             top_word = [i for i in words_list if i not in stopwords][0]
-            if "mask" in user_prompt_str and orig_image_path is not None:
+            if ("mask" in user_prompt_str.lower() or "segment" in user_prompt_str.lower()) and orig_image_path is not None:
                 print(f'Here {orig_image_path} with mask promt {top_word} !')
                 filename = dino_sam(image_path=orig_image_path, text_prompt=top_word, output_dir='/temp/gradio/outputs', box_threshold=0.5, text_threshold=0.55)
                 view_mask_filename = f' [View generated image]({HTTPD_URL}outputs/{filename})'
@@ -787,6 +811,7 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
                         '',
                     ]
                 )
+                return "", None, chat_history
             else:
                chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
         else:
