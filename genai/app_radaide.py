@@ -26,6 +26,10 @@ import dino_sam_inpainting as D
 # Multiclass classification
 import multi_class as M
 
+## CoT
+from langchain import PromptTemplate, LLMChain
+from langchain.llms import HuggingFaceTextGenInference
+
 # Keyword extraction
 from keybert import KeyBERT
 
@@ -63,28 +67,28 @@ API_PATHS = {
         "https://api-inference.huggingface.co/models/HuggingFaceM4/idefics-80b-instruct"
     ),
     "local/idefics-9b-instruct": (
-        "http://35.173.104.196:8080"
+        "http://infs.cavatar.info:8080"
     ),
 }
 
 SYSTEM_PROMPT = [
-    """"The following is a conversation between a highly knowledgeable and intelligent visual AI assistant, called Assistant, and a human user, called User. In the following interactions, User and Assistant will converse in natural language, and Assistant will do its best to answer User’s questions. Assistant has the ability to perceive images and reason about the content of visual inputs. Assistant was built to be respectful, polite and inclusive. It knows a lot, and always tells the truth. When prompted with an image, it does not make up facts. The conversation begins:""",
+    """"The following is a conversation between a highly knowledgeable and intelligent visual AI assistant, called RadAide, and a human user, called User. In the following interactions, User and Assistant will converse in natural language, and RadAide will do its best to answer User’s questions. RadAide has the ability to perceive images and reason about the content of visual inputs. It can also process images by following precise instructs. RadAide was built to be respectful, polite and inclusive. It knows a lot, and always tells the truth. When prompted with an image, it does not make up facts. The conversation begins:""",
     """\nUser:""",
-    "https://upload.wikimedia.org/wikipedia/commons/a/ad/CT_Scan_General_Illustration.jpg"
-    "Describe this image.<end_of_utterance>",
-    """\nAssistant: Five kittens are standing together in the center of the photograph. From the left to right, there is one orange kitten, two kittens white and black stripes, and two brown kittens with an orange head. They are in bright green grass and it looks like they are moving forward.<end_of_utterance>""",
+    "https://miro.medium.com/v2/resize:fit:1332/0*yl2b-bDJeEwKPUI5"
+    "Describe the nature of this image.<end_of_utterance>",
+    """\RadAide: A tattooed person holding a sign that says, “Teach your children well,” in a crowd of people. In the middle of the sign, there’s an illustration of the earth with 2 raised fists on either side that have a rainbow pride square background, a trans pride circle background, and brown skin tone stripes on the fists. The raised fist is a symbol of solidarity and specifically Black power as popularized by the Black Panther Party in the 1960s. The rainbow pride flag has rainbow stripes and symbolizes general LGBTQ pride. The trans pride flag has pink, blue, and white stripes and celebrates pride for the trans and gender non-conforming umbrella.<end_of_utterance>""",
     "\nUser:How about this image?",
     "https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074_1280.jpg",
     "Can you describe it too?<end_of_utterance>",
-    """\nAssistant: A dog is lying on the floor, looking at the camera. It is looking directly at you. The dog has a white body and brown patches on its face and ears. Its eyes are dark. Its nose is black, and it has long, floppy ears, white paws, long fur, big eyes.<end_of_utterance>""",
+    """\RadAide: A dog is lying on the floor, looking at the camera. It is looking directly at you. The dog has a white body and brown patches on its face and ears. Its eyes are dark. Its nose is black, and it has long, floppy ears, white paws, long fur, big eyes.<end_of_utterance>""",
     "\nUser: What kind of breed is it?<end_of_utterance>",
-    """\nAssistant: It looks like a Cavalier King Charles Spaniel. These breeds are known for their gentle, affectionate nature. Their long ears and big, brown eyes give them a sweet, expressive face. Cavaliers are small dogs weighing between 13 and 20 pounds. They have a silky, medium-length coat that comes in various colors, including black and tan, tricolor, red and white, or black.<end_of_utterance>""",
+    """\RadAide: It looks like a Cavalier King Charles Spaniel. These breeds are known for their gentle, affectionate nature. Their long ears and big, brown eyes give them a sweet, expressive face. Cavaliers are small dogs weighing between 13 and 20 pounds. They have a silky, medium-length coat that comes in various colors, including black and tan, tricolor, red and white, or black.<end_of_utterance>""",
     "\nUser: What can you tell me about this breed of dogs?<end_of_utterance>",
-    """\nAssistant: One specific characteristic of the Cavalier King Charles Spaniel is its friendly and affectionate nature. This breed is known for being extremely sociable and forming strong bonds with their owners. They are often described as "velcro dogs" because they love to be close to their human companions, whether it's sitting on their laps, cuddling on the couch, or simply following them around the house.<end_of_utterance>""",
+    """\RadAide: One specific characteristic of the Cavalier King Charles Spaniel is its friendly and affectionate nature. This breed is known for being extremely sociable and forming strong bonds with their owners. They are often described as "velcro dogs" because they love to be close to their human companions, whether it's sitting on their laps, cuddling on the couch, or simply following them around the house.<end_of_utterance>""",
     "\nUser: ghjkhjabnufs<end_of_utterance>",
-    """\nAssistant: That doesn’t seem to be a word. Could you ask me another way?<end_of_utterance>""",
+    """\RadAide: That doesn’t seem to be a word. Could you ask me another way?<end_of_utterance>""",
     "\nUser: Do you like Cavalier King Charles Spaniel?<end_of_utterance>",
-    """\nAssistant: I do not have personal opinions as I’m just a computer program. However, cavaliers are known for being excellent family pets due to their gentle and patient demeanor, making them great with children and other pets. Their affectionate nature also makes them ideal therapy dogs, as they can provide comfort and emotional support to those in need.<end_of_utterance>""",
+    """\RadAide: I do not have personal opinions as I’m just a computer program. However, cavaliers are known for being excellent family pets due to their gentle and patient demeanor, making them great with children and other pets. Their affectionate nature also makes them ideal therapy dogs, as they can provide comfort and emotional support to those in need.<end_of_utterance>""",
     "\nUser: How many dogs do you see in this image?",
     "https://i.dailymail.co.uk/i/pix/2011/07/01/article-2010308-0CD22A8300000578-496_634x414.jpg",
     "<end_of_utterance>",
@@ -320,6 +324,34 @@ def isolate_images_urls(prompt_list: List) -> List:
             )
     return linearized_list
 
+def cot_langchain_llama27b(query_string: str) -> str:
+    inference_server_url_local = "http://infs.cavatar.info:8083"
+
+    llm_local = HuggingFaceTextGenInference(
+        inference_server_url=inference_server_url_local,
+        max_new_tokens=200,
+        top_k=5,
+        top_p=0.96,
+        typical_p=0.95,
+        temperature=0.001,
+        repetition_penalty=1.08,
+    )
+    template = """Use the following pieces of context to fully understand the intent and create sub staks to address the context. Please try not to, 
+        make up an answer nor hallucinate. Use five maximum sentences and keep the sub tasks as precise as possible. List all actionable steps in 
+        detail. Be cautious to avoid phrasing that might replicate previous inquiries. This will help in obtaining an accurate and detailed answer. 
+        Avoid repetition for clarity.
+
+        Question: {question}
+        Answer: Understand the intent of the question then break down the {question} in to sub-tasks. """
+    
+    prompt = PromptTemplate(
+        template=template, 
+        input_variables= ["question"]
+    )
+
+    llm_chain_local = LLMChain(prompt=prompt, llm=llm_local)
+    cot_return = llm_chain_local(query_string)["text"].replace("\n", "") 
+    return f'. Please follow the sub tasks listed below and organize your answers in a short paragraph with precisise and professional writing style plus duplicate avoidance: {cot_return}'
 
 def fetch_images(url_list: str) -> PIL.Image.Image:
     """Fetching images"""
@@ -391,6 +423,7 @@ def prompt_list_to_tgi_input(prompt_list: List[str]) -> str:
                 result_string_input += f"![]({gradio_link(img_path=elem)})"
         else:
             result_string_input += elem
+            
     return result_string_input
 
 
@@ -411,6 +444,9 @@ def format_user_prompt_with_im_history_and_system_conditioning(
     """
     resulting_list = copy.deepcopy(SYSTEM_PROMPT)
 
+    #CoT Alfred
+    cot_added_str = cot_langchain_llama27b(current_user_prompt_str.strip()) if ("detail" in current_user_prompt_str.lower() or "describe" in current_user_prompt_str.lower() or "explain" in current_user_prompt_str.lower()) else ""
+    
     # Format history
     for turn in history:
         user_utterance, assistant_utterance = turn
@@ -421,6 +457,8 @@ def format_user_prompt_with_im_history_and_system_conditioning(
             optional_space = " "
         resulting_list.append(f"\nUser:{optional_space}")
         resulting_list.extend(splitted_user_utterance)
+        # CoT Alfred
+        resulting_list.append(cot_added_str)
         resulting_list.append(f"<end_of_utterance>\nAssistant: {assistant_utterance}")
 
     # Format current input
@@ -437,10 +475,12 @@ def format_user_prompt_with_im_history_and_system_conditioning(
             optional_space = " "
         resulting_list.append(f"\nUser:{optional_space}")
         resulting_list.extend(current_user_prompt_list)
+        #CoT Alfred
+        resulting_list.append(cot_added_str)
         resulting_list.append("<end_of_utterance>\nAssistant:")
     else:
         # Choosing to put the image first when the image is inputted through the UI, but this is an arbiratrary choice.
-        resulting_list.extend(["\nUser:", current_image, f"{current_user_prompt_str}<end_of_utterance>\nAssistant:"])
+        resulting_list.extend(["\nUser:", current_image, f"{current_user_prompt_str}{cot_added_str}<end_of_utterance>\nAssistant:"])
         current_user_prompt_list = [current_user_prompt_str]
 
     return resulting_list, current_user_prompt_list
@@ -496,7 +536,7 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
             elem_id="chatbot",
             label="Multimodal",
             visible=True,
-            height=750,
+            height=1000,
             avatar_images=[None, BOT_AVATAR]
             #                 value=[
             #                     [
@@ -632,6 +672,8 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
 
         formated_prompt_list, user_prompt_list = format_user_prompt_with_im_history_and_system_conditioning(
             current_user_prompt_str=user_prompt_str.strip(),
+            # With CoT
+            #current_user_prompt_str=f'{user_prompt_str.strip()}. {cot_langchain_llama27b(user_prompt_str.strip())}',
             current_image=image,
             history=chat_history,
         )
@@ -660,8 +702,10 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
             generation_args["temperature"] = temperature
             generation_args["do_sample"] = True
             generation_args["top_p"] = top_p
-
+        mask_filename = None
         if image is None:
+            chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
+            '''
             ## By Alfred
             words_list = kw_model.extract_keywords(docs=user_prompt_str, keyphrase_ngram_range=(1,3))
             words_list = [*words_list[0],][0].split()
@@ -669,10 +713,10 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
             print(f'{words_list} and with type {type(words_list)}')
             stopwords = ['mask', 'mark', 'edge' 'segment', 'segmentation', 'cut', 'create', 'generate', 'image', 'picture', 'photo']
             top_word = [i for i in words_list if i not in stopwords][0]
-            top_n = M.mclass(text_prompt=user_prompt_str, topics=['Others', 'Create mask', 'Image segmentation'], top_k=1)
+            top_n = M.mclass(text_prompt=user_prompt_str, topics=['Others', 'Create image mask', 'Image segmentation'], top_k=1)
             for label, score in top_n:
                 print(f'With label: {label} and score: {score}')
-                if ('Create mask' in label or 'Image segmentation' in label) and orig_image_path is not None:
+                if ('Create image mask' in label or 'Image segmentation' in label) and orig_image_path is not None:
                     filename = dino_sam(image_path=orig_image_path, text_prompt=top_word, output_dir='/temp/gradio/outputs', box_threshold=0.5, text_threshold=0.55)
                     view_mask_filename = f' [View generated image]({HTTPD_URL}outputs/{filename})'
                     mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
@@ -685,6 +729,7 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
                 else:
                     # Alfred Case where there is no image OR the image is passed as `<fake_token_around_image><image:IMAGE_URL><fake_token_around_image>`
                     chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
+            '''
         else:
             # Case where the image is passed through the Image Box.
             # Convert the image into base64 for both passing it through the chat history and
@@ -698,6 +743,8 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
 
         query = prompt_list_to_tgi_input(formated_prompt_list)
         print(query)
+        #query += cot_langchain_llama27b(user_prompt_str.strip())
+        #print(f'New query: {query}')
         stream = client.generate_stream(prompt=query, **generation_args)
 
         acc_text = ""
@@ -811,7 +858,6 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
                         '',
                     ]
                 )
-                return "", None, chat_history
             else:
                chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
         else:
