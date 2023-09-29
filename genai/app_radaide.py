@@ -24,7 +24,15 @@ import torch
 import matplotlib.pyplot as plt
 import dino_sam_inpainting as D
 # Multiclass classification
-import multi_class as M
+import utils.multi_class as M
+import random
+
+#SDXL
+import io, base64
+from PIL import Image
+from utils import bedrock
+from io import BytesIO
+from base64 import b64encode
 
 ## CoT
 from langchain import PromptTemplate, LLMChain
@@ -51,7 +59,7 @@ device = 'cuda'
 
 
 s3_client = boto3.client('s3')
-asr_model = whisper.load_model("medium")
+asr_model = whisper.load_model("large")
 
 MODELS = [
     #"HuggingFaceM4/idefics-9b-instruct",
@@ -160,7 +168,8 @@ def dino_sam(image_path, text_prompt, text_threshold=0.4, box_threshold=0.5, out
     # load model
     model = D.load_model(config_file, grounded_checkpoint, device=device)
 
-    output_file_name = f'{format(os.path.basename(image_path))}'
+    rnum = random.randint(10, 100)
+    output_file_name = f'{rnum}_{format(os.path.basename(image_path))}'
 
     # visualize raw image
     image_pil.save(os.path.join(output_dir, output_file_name))
@@ -204,7 +213,7 @@ def dino_sam(image_path, text_prompt, text_threshold=0.4, box_threshold=0.5, out
     for box, label in zip(boxes_filt, pred_phrases):
         D.show_box(box.numpy(), plt.gca(), label)
 
-    output_file_name = f'{format(os.path.basename(image_path))}'
+    #output_file_name = f'{format(os.path.basename(image_path))}'
     plt.axis('off')
     plt.savefig(
         os.path.join(output_dir, f'grounded_sam_{output_file_name}'),
@@ -215,7 +224,50 @@ def dino_sam(image_path, text_prompt, text_threshold=0.4, box_threshold=0.5, out
     return f'grounded_sam_{output_file_name}'
 
 
+## SDXL
+def image_gen(prompt: str, image_path: str) -> str:
+    if prompt is None:
+        return
+    boto3_bedrock = boto3.client(service_name='bedrock',region_name='us-east-1',endpoint_url='https://bedrock.us-east-1.amazonaws.com')
+    negative_prompts = [
+        "poorly rendered", 
+        "poor background details", 
+        "poorly drawn dog", 
+        "disfigured dog features",
+        "blurry"
+    ]
+    style_preset = "photographic" # (photographic, digital-art, cinematic, ...)
+    modelId = 'stability.stable-diffusion-xl'
+    model = bedrock.Bedrock(boto3_bedrock)
+    rnum = random.randint(100, 2000)
 
+    if image_path is None:
+        base_64_img_str = model.generate_image(prompt,  modelId=modelId, cfg_scale=5, seed=2143, steps=70, style_preset=style_preset)
+        image_2 = Image.open(io.BytesIO(base64.decodebytes(bytes(base_64_img_str, "utf-8"))))
+        image_2.save(f'/tmp/gradio/outputs/sdxl_{rnum}.jpg')
+    else:
+        buffer = BytesIO()
+        image_1 = Image.open(image_path)
+        # Resize to 512
+        basewidth = 512
+        hsize =5 12
+        '''
+        width, height = image_1.size
+        if width > 512:
+            basewidth = 512
+            wpercent = (basewidth/float(image_1.size[0]))
+            hsize = int((float(image_1.size[1])*float(wpercent)))
+        '''
+        image_1 = image_1.resize((basewidth,hsize), Image.Resampling.LANCZOS)
+        # Gen image to image
+        image_1.save(buffer, format="JPEG")
+        img_bytes = buffer.getvalue()
+        init_image = b64encode(img_bytes).decode()
+        base_64_img_str = model.generate_image(prompt, init_image=init_image, start_schedule=0.6, cfg_scale=5, seed=12345, steps=70, style_preset=style_preset)
+        image_3 = Image.open(io.BytesIO(base64.decodebytes(bytes(base_64_img_str, "utf-8"))))
+        image_3.save(f'/tmp/gradio/outputs/sdxl_{rnum}.jpg')
+    return f'sdxl_{rnum}.jpg'
+    
 
 # This is a hack to make pre-computing the default examples work.
 # During normal inference, we pass images as url to a local file using the method `gradio_link`
@@ -278,28 +330,6 @@ def is_url(string: str) -> bool:
 
 
 def isolate_images_urls(prompt_list: List) -> List:
-    """
-    Convert a full string prompt to the list format expected by the processor.
-    In particular, image urls (as delimited by <fake_token_around_image>) should be their own elements.
-    From:
-    ```
-    [
-        "bonjour<fake_token_around_image><image:IMG_URL><fake_token_around_image>hello",
-        PIL.Image.Image,
-        "Aurevoir",
-    ]
-    ```
-    to:
-    ```
-    [
-        "bonjour",
-        IMG_URL,
-        "hello",
-        PIL.Image.Image,
-        "Aurevoir",
-    ]
-    ```
-    """
     linearized_list = []
     for prompt in prompt_list:
         # Prompt can be either a string, or a PIL image
@@ -445,7 +475,7 @@ def format_user_prompt_with_im_history_and_system_conditioning(
     resulting_list = copy.deepcopy(SYSTEM_PROMPT)
 
     #CoT Alfred
-    cot_added_str = cot_langchain_llama27b(current_user_prompt_str.strip()) if ("detail" in current_user_prompt_str.lower() or "describe" in current_user_prompt_str.lower() or "explain" in current_user_prompt_str.lower()) else ""
+    cot_added_str = cot_langchain_llama27b(current_user_prompt_str.strip()) if ("detail" in current_user_prompt_str.lower() or "elaborate" in current_user_prompt_str.lower() or "comprehen" in current_user_prompt_str.lower() or 'depict' in current_user_prompt_str.lower()) else ""
     
     # Format history
     for turn in history:
@@ -505,7 +535,7 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
             gr.Image(DocAid_logo, elem_id="banner-image", show_label=False, show_download_button=False, height=200, weight=100)
         with gr.Column(scale=5):
             gr.HTML("""
-                <p>📚 The demo presents <strong>IDEFICS</strong>, an open-access multimodality model fine tuned from Deepmind's <a href="https://huggingface.co/papers/2204.14198">Flamingo</a> that processes both image and text inputs to produce textual outputs.</p>
+                <p>📚 The demo presents <strong>Dialogue Guided Visual Language Processing</strong>, an multimodality VLP pirpeline based on LLM (i.e. Llama-v2) and VLM (i.e. IDEFICS) model that processes both image, text and voicenputs.</p>
                 <p>🅿️ <strong>Intended uses:</strong> This demo serves as a proof of concept for multimodal generation. To prepare it for production, further refinement, including fine-tuning and expert evaluation, is necessary.</p>
                 <p>⛔️ <strong>Limitations:</strong> The model might generate inaccurate information, invent details from images or text, and often overlooks minute image details. Although it generally avoids responding to dubious user queries, it can still produce outputs that may be racist, stereotypical, or offensive, especially when specifically prompted.</p>
             """)
@@ -703,33 +733,46 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
             generation_args["do_sample"] = True
             generation_args["top_p"] = top_p
         mask_filename = None
+        orig_image_path = None
         if image is None:
-            chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
-            '''
-            ## By Alfred
-            words_list = kw_model.extract_keywords(docs=user_prompt_str, keyphrase_ngram_range=(1,3))
-            words_list = [*words_list[0],][0].split()
-            orig_image_path = re.findall('\((.*?)\)', chat_history[0][0])[0].split('=')[1]
-            print(f'{words_list} and with type {type(words_list)}')
-            stopwords = ['mask', 'mark', 'edge' 'segment', 'segmentation', 'cut', 'create', 'generate', 'image', 'picture', 'photo']
-            top_word = [i for i in words_list if i not in stopwords][0]
-            top_n = M.mclass(text_prompt=user_prompt_str, topics=['Others', 'Create image mask', 'Image segmentation'], top_k=1)
+            #chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
+
+            top_n = M.mclass(text_prompt=user_prompt_str, topics=['Others', 'Generate image from text', 'Generate image from image', 'Image segmentation'], top_k=1)
             for label, score in top_n:
                 print(f'With label: {label} and score: {score}')
-                if ('Create image mask' in label or 'Image segmentation' in label) and orig_image_path is not None:
-                    filename = dino_sam(image_path=orig_image_path, text_prompt=top_word, output_dir='/temp/gradio/outputs', box_threshold=0.5, text_threshold=0.55)
-                    view_mask_filename = f' [View generated image]({HTTPD_URL}outputs/{filename})'
-                    mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
-                    chat_history.append(
-                        [
-                            f"{prompt_list_to_markdown(user_prompt_list + [view_mask_filename] + [mask_filename])}",
-                            '',
-                        ]
-                    )
+                if ('Others' not in label and score >=0.55): 
+                    if ('Image segmentation' in label and score >= 0.65 ):
+                        words_list = kw_model.extract_keywords(docs=user_prompt_str, keyphrase_ngram_range=(1,3))
+                        words_list = [*words_list[0],][0].split()
+                        print(f'{words_list} and with type {type(words_list)}')
+                        stopwords = ['mask', 'create', 'generate', 'image', 'cut', 'edge', 'picture', 'photo', 'segment', 'new', 'her', 'his', 'my', 'the', 'that', 'this']
+                        top_word = [i for i in words_list if i not in stopwords][0]
+                        orig_image_path = re.findall('\((.*?)\)', chat_history[0][0])[0].split('=')[1]
+                        filename = dino_sam(image_path=orig_image_path, text_prompt=top_word, \
+                                            output_dir='/temp/gradio/outputs', box_threshold=0.5, text_threshold=0.55)
+                        view_mask_filename = f' [View generated image]({HTTPD_URL}outputs/{filename})'
+                        mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
+                        chat_history.append(
+                            [
+                                f"{prompt_list_to_markdown(user_prompt_list + [view_mask_filename] + [mask_filename])}",
+                                '',
+                            ]
+                        )
+                    else:
+                        if ('generate image from image' in label.lower() and score >= 0.60 ):
+                            orig_image_path = re.findall('\((.*?)\)', chat_history[0][0])[0].split('=')[1]
+                        filename = image_gen(prompt=user_prompt_str, image_path=orig_image_path)
+                        if filename is not None:
+                            view_mask_filename = f' [View generated image]({HTTPD_URL}outputs/{filename})'
+                            mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
+                            chat_history.append(
+                                [
+                                    f"{prompt_list_to_markdown(user_prompt_list + [view_mask_filename] + [mask_filename])}",
+                                    '',
+                                ]
+                            )
                 else:
-                    # Alfred Case where there is no image OR the image is passed as `<fake_token_around_image><image:IMAGE_URL><fake_token_around_image>`
                     chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
-            '''
         else:
             # Case where the image is passed through the Image Box.
             # Convert the image into base64 for both passing it through the chat history and
@@ -748,31 +791,35 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
         stream = client.generate_stream(prompt=query, **generation_args)
 
         acc_text = ""
-        for idx, response in enumerate(stream):
-            text_token = response.token.text
-
-            if response.details:
-                # That's the exit condition
-                return
-
-            if text_token in STOP_SUSPECT_LIST:
-                acc_text += text_token
-                continue
-
-            if idx == 0 and text_token.startswith(" "):
-                text_token = text_token.lstrip()
-
-            acc_text += text_token
-            last_turn = chat_history.pop(-1)
-            last_turn[-1] += acc_text
-            if last_turn[-1].endswith("\nUser"):
-                # Safeguard: sometimes (rarely), the model won't generate the token `<end_of_utterance>` and will go directly to generating `\nUser:`
-                # It will thus stop the generation on `\nUser:`. But when it exits, it will have already generated `\nUser`
-                # This post-processing ensures that we don't have an additional `\nUser` wandering around.
-                last_turn[-1] = last_turn[-1][:-5]
-            chat_history.append(last_turn)
+        if mask_filename is not None:
+            chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
             yield "", None, chat_history
-            acc_text = ""
+        else:
+            for idx, response in enumerate(stream):
+                text_token = response.token.text
+    
+                if response.details:
+                    # That's the exit condition
+                    return
+    
+                if text_token in STOP_SUSPECT_LIST:
+                    acc_text += text_token
+                    continue
+    
+                if idx == 0 and text_token.startswith(" "):
+                    text_token = text_token.lstrip()
+    
+                acc_text += text_token
+                last_turn = chat_history.pop(-1)
+                last_turn[-1] += acc_text
+                if last_turn[-1].endswith("\nUser"):
+                    # Safeguard: sometimes (rarely), the model won't generate the token `<end_of_utterance>` and will go directly to generating `\nUser:`
+                    # It will thus stop the generation on `\nUser:`. But when it exits, it will have already generated `\nUser`
+                    # This post-processing ensures that we don't have an additional `\nUser` wandering around.
+                    last_turn[-1] = last_turn[-1][:-5]
+                chat_history.append(last_turn)
+                yield "", None, chat_history
+                acc_text = ""
 
     def asr_inference(audio):
         audio = whisper.load_audio(audio)
@@ -799,6 +846,7 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
         top_p,
     ):
         user_prompt_str = asr_inference(audio)
+
         acc_text = ""
         if user_prompt_str.strip() == "" and image is None:
             return "", None, chat_history
@@ -839,13 +887,50 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
             generation_args["top_p"] = top_p
         mask_filename = None
         if image is None:
+            top_n = M.mclass(text_prompt=user_prompt_str, topics=['Others', 'Generate image from text', 'Generate image from image', 'Image segmentation'], top_k=1)
+            for label, score in top_n:
+                print(f'With label: {label} and score: {score}')
+                if ('Others' not in label and score >=0.55): 
+                    if ('Image segmentation' in label and score >= 0.65 ):
+                        words_list = kw_model.extract_keywords(docs=user_prompt_str, keyphrase_ngram_range=(1,3))
+                        words_list = [*words_list[0],][0].split()
+                        print(f'{words_list} and with type {type(words_list)}')
+                        stopwords = ['mask', 'create', 'generate', 'image', 'cut', 'edge', 'picture', 'photo', 'segment', 'new', 'her', 'his', 'my', 'the', 'that', 'this']
+                        top_word = [i for i in words_list if i not in stopwords][0]
+                        orig_image_path = re.findall('\((.*?)\)', chat_history[0][0])[0].split('=')[1]
+                        filename = dino_sam(image_path=orig_image_path, text_prompt=top_word, \
+                                            output_dir='/temp/gradio/outputs', box_threshold=0.5, text_threshold=0.55)
+                        view_mask_filename = f' [View generated image]({HTTPD_URL}outputs/{filename})'
+                        mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
+                        chat_history.append(
+                            [
+                                f"{prompt_list_to_markdown(user_prompt_list + [view_mask_filename] + [mask_filename])}",
+                                '',
+                            ]
+                        )
+                    else:
+                        if ('generate image from image' in label.lower() and score >= 0.60 ):
+                            orig_image_path = re.findall('\((.*?)\)', chat_history[0][0])[0].split('=')[1]
+                        filename = image_gen(prompt=user_prompt_str, image_path=orig_image_path)
+                        if filename is not None:
+                            view_mask_filename = f' [View generated image]({HTTPD_URL}outputs/{filename})'
+                            mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
+                            chat_history.append(
+                                [
+                                    f"{prompt_list_to_markdown(user_prompt_list + [view_mask_filename] + [mask_filename])}",
+                                    '',
+                                ]
+                            )
+                else:
+                    chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
+            '''
             words_list = kw_model.extract_keywords(docs=user_prompt_str, keyphrase_ngram_range=(1,3))
             words_list = [*words_list[0],][0].split()
             print(f'{words_list} and with type {type(words_list)}')
-            stopwords = ['mask', 'create', 'generate', 'image', 'cut', 'edge', 'picture', 'photo']
+            stopwords = ['mask', 'create', 'generate', 'image', 'cut', 'edge', 'picture', 'photo', 'segment', 'new', 'her', 'his', 'my', 'the', 'that', 'this']
             top_word = [i for i in words_list if i not in stopwords][0]
             if ("mask" in user_prompt_str.lower() or "segment" in user_prompt_str.lower()) and orig_image_path is not None:
-                print(f'Here {orig_image_path} with mask promt {top_word} !')
+                print(f'Here {orig_image_path} with mask prompt {top_word} !')
                 filename = dino_sam(image_path=orig_image_path, text_prompt=top_word, output_dir='/temp/gradio/outputs', box_threshold=0.5, text_threshold=0.55)
                 view_mask_filename = f' [View generated image]({HTTPD_URL}outputs/{filename})'
                 mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
@@ -860,6 +945,7 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
                 )
             else:
                chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
+            '''
         else:
             # Case where the image is passed through the Image Box.
             # Convert the image into base64 for both passing it through the chat history and
@@ -1056,79 +1142,6 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
     clear_btn.click(lambda : gr.update(label='📁 Upload image', interactive=True), [], upload_btn)
     asr_btn.click(lambda : gr.update(label='📁 Upload image', interactive=True), [], upload_btn)
     
-    # Using Flagging for saving dope and problematic examples
-    # Dope examples flagging
-    # dope_callback.setup(
-    #     [
-    #         model_selector,
-    #         textbox,
-    #         chatbot,
-    #         imagebox,
-    #         decoding_strategy,
-    #         temperature,
-    #         max_new_tokens,
-    #         repetition_penalty,
-    #         top_p,
-    #     ],
-    #     "gradio_dope_data_points",
-    # )
-    # dope_bttn.click(
-    #     lambda *args: dope_callback.flag(args),
-    #     [
-    #         model_selector,
-    #         textbox,
-    #         chatbot,
-    #         imagebox,
-    #         decoding_strategy,
-    #         temperature,
-    #         max_new_tokens,
-    #         repetition_penalty,
-    #         top_p,
-    #     ],
-    #     None,
-    #     preprocess=False,
-    # )
-    # # Problematic examples flagging
-    # problematic_callback.setup(
-    #     [
-    #         model_selector,
-    #         textbox,
-    #         chatbot,
-    #         imagebox,
-    #         decoding_strategy,
-    #         temperature,
-    #         max_new_tokens,
-    #         repetition_penalty,
-    #         top_p,
-    #     ],
-    #     "gradio_problematic_data_points",
-    # )
-    # problematic_bttn.click(
-    #     lambda *args: problematic_callback.flag(args),
-    #     [
-    #         model_selector,
-    #         textbox,
-    #         chatbot,
-    #         imagebox,
-    #         decoding_strategy,
-    #         temperature,
-    #         max_new_tokens,
-    #         repetition_penalty,
-    #         top_p,
-    #     ],
-    #     None,
-    #     preprocess=False,
-    # )
-
-    # gr.Markdown("""## How to use?
-
-    #     There are two ways to provide image inputs:
-    #     - Using the image box on the left panel
-    #     - Using the inline syntax: `text<fake_token_around_image><image:URL_IMAGE><fake_token_around_image>text`
-
-    #     The second syntax allows inputting an arbitrary number of images.""")
-
-    #examples_path = os.path.dirname(__file__)
     examples_path = os.getcwd()
     gr.Examples(
         examples=[
@@ -1162,104 +1175,6 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
             " pre-computed with `idefics-9b-instruct`."
         ),
     )
-    '''
-    gr.Examples(
-        examples=[
-            [
-                (
-                    "Which famous person does the person in the image look like? Could you craft an engaging narrative"
-                    " featuring this character from the image as the main protagonist?"
-                ),
-                f"{examples_path}/example_images/obama-harry-potter.jpg",
-            ],
-            [
-                "Can you describe the image? Do you think it's real?",
-                f"{examples_path}/example_images/rabbit_force.png",
-            ],
-            ["Explain this meme to me.", f"{examples_path}/example_images/meme_french.jpg"],
-            ["Give me a short and easy recipe for this dish.", f"{examples_path}/example_images/recipe_burger.webp"],
-            [
-                "I want to go somewhere similar to the one in the photo. Give me destinations and travel tips.",
-                f"{examples_path}/example_images/travel_tips.jpg",
-            ],
-            [
-                "Can you name the characters in the image and give their French names?",
-                f"{examples_path}/example_images/gaulois.png",
-            ],
-            # ["Describe this image in detail.", f"{examples_path}/example_images/plant_bulb.webp"],
-            ["Write a complete sales ad for this product.", f"{examples_path}/example_images/product_ad.jpg"],
-            [
-                (
-                    "As an art critic AI assistant, could you describe this painting in details and make a thorough"
-                    " critic?"
-                ),
-                f"{examples_path}/example_images/art_critic.png",
-            ],
-            [
-                "Can you tell me a very short story based on this image?",
-                f"{examples_path}/example_images/chicken_on_money.png",
-            ],
-            ["Write 3 funny meme texts about this image.", f"{examples_path}/example_images/elon_smoking.jpg"],
-            [
-                "Who is in this picture? Why do people find it surprising?",
-                f"{examples_path}/example_images/pope_doudoune.webp",
-            ],
-            # ["<fake_token_around_image><image:https://assets.stickpng.com/images/6308b83261b3e2a522f01467.png><fake_token_around_image>Make a poem about the company in the image<fake_token_around_image><image:https://miro.medium.com/v2/resize:fit:1400/0*jvDu2oQreHn63-fJ><fake_token_around_image>organizing the Woodstock of AI event,<fake_token_around_image><image:https://nationaltoday.com/wp-content/uploads/2019/12/national-llama-day-1200x834.jpg><fake_token_around_image>and the fact they brought those to the event.", None],
-            ["What are the armed baguettes guarding?", f"{examples_path}/example_images/baguettes_guarding_paris.png"],
-            # ["Can you describe the image?", f"{examples_path}/example_images/bear_costume.png"],
-            ["What is this animal and why is it unusual?", f"{examples_path}/example_images/blue_dog.png"],
-            [
-                "What is this object and do you think it is horrifying?",
-                f"{examples_path}/example_images/can_horror.png",
-            ],
-            [
-                (
-                    "What is this sketch for? How would you make an argument to prove this sketch was made by Picasso"
-                    " himself?"
-                ),
-                f"{examples_path}/example_images/cat_sketch.png",
-            ],
-            ["Which celebrity does this claymation figure look like?", f"{examples_path}/example_images/kanye.jpg"],
-            # [
-            #     "Is there a celebrity look-alike in this image? What is happening to the person?",
-            #     f"{examples_path}/example_images/ryan-reynolds-borg.jpg",
-            # ],
-            # ["Can you describe this image in details please?", f"{examples_path}/example_images/dragons_playing.png"],
-            ["What can you tell me about the cap in this image?", f"{examples_path}/example_images/ironman_cap.png"],
-            [
-                "Can you write an advertisement for Coca-Cola based on this image?",
-                f"{examples_path}/example_images/polar_bear_coke.png",
-            ],
-            # [
-            #     "What is the rabbit doing in this image? Do you think this image is real?",
-            #     f"{examples_path}/example_images/rabbit_force.png",
-            # ],
-            # ["What is happening in this image and why is it unusual?", f"{examples_path}/example_images/ramen.png"],
-            # [
-            #     "What I should look most forward to when I visit this place?",
-            #     f"{examples_path}/example_images/tree_fortress.jpg",
-            # ],
-            # ["Who is the person in the image and what is he doing?", f"{examples_path}/example_images/tom-cruise-astronaut-pegasus.jpg"],
-            [
-                "What is happening in this image? Which famous personality does this person in center looks like?",
-                f"{examples_path}/example_images/gandhi_selfie.jpg",
-            ],
-            [
-                "What do you think the dog is doing and is it unusual?",
-                f"{examples_path}/example_images/surfing_dog.jpg",
-            ],
-        ],
-        inputs=[textbox, imagebox],
-        outputs=[textbox, imagebox, chatbot],
-        fn=process_example,
-        cache_examples=True,
-        examples_per_page=6,
-        label=(
-            "Choose any of the following examples to get started.\nFor convenience, the model generations have been"
-            " pre-computed."
-        ),
-    )
-    '''
 
 demo.queue(concurrency_count=40, max_size=40)
-demo.launch(debug=True, server_name="0.0.0.0", server_port=7863, height=2048, share=False, ssl_verify=False, ssl_keyfile="/home/alfred/utils/cavatar.key", ssl_certfile="/home/alfred/utils/cavatar.pem")
+demo.launch(debug=True, server_name="0.0.0.0", server_port=7863, height=2048, share=False, ssl_verify=False, ssl_keyfile="/home/alfred/utils/cavatar.key", ssl_certfile="/home/alfred/utils/cavatar.pem", auth=("demo", "smjs2023"))
