@@ -250,7 +250,7 @@ def image_gen(prompt: str, image_path: str) -> str:
         image_1 = Image.open(image_path)
         # Resize to 512
         basewidth = 512
-        hsize =5 12
+        hsize = 512
         '''
         width, height = image_1.size
         if width > 512:
@@ -735,42 +735,51 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
         mask_filename = None
         orig_image_path = None
         if image is None:
-            #chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
-
             top_n = M.mclass(text_prompt=user_prompt_str, topics=['Others', 'Generate image from text', 'Generate image from image', 'Image segmentation'], top_k=1)
             for label, score in top_n:
                 print(f'With label: {label} and score: {score}')
-                if ('Others' not in label and score >=0.55): 
-                    if ('Image segmentation' in label and score >= 0.65 ):
-                        words_list = kw_model.extract_keywords(docs=user_prompt_str, keyphrase_ngram_range=(1,3))
-                        words_list = [*words_list[0],][0].split()
-                        print(f'{words_list} and with type {type(words_list)}')
-                        stopwords = ['mask', 'create', 'generate', 'image', 'cut', 'edge', 'picture', 'photo', 'segment', 'new', 'her', 'his', 'my', 'the', 'that', 'this']
-                        top_word = [i for i in words_list if i not in stopwords][0]
-                        orig_image_path = re.findall('\((.*?)\)', chat_history[0][0])[0].split('=')[1]
-                        filename = dino_sam(image_path=orig_image_path, text_prompt=top_word, \
-                                            output_dir='/temp/gradio/outputs', box_threshold=0.5, text_threshold=0.55)
+                if ('Image segmentation' in label and score >= 0.65 ):
+                    words_list = kw_model.extract_keywords(docs=user_prompt_str, keyphrase_ngram_range=(1,3))
+                    words_list = [*words_list[0],][0].split()
+                    print(f'{words_list} and with type {type(words_list)}')
+                    stopwords = ['mask', 'create', 'generate', 'image', 'cut', 'edge', 'picture', 'photo', 'segment', 'new', 'her', 'his', 'my', 'the', 'that', 'this']
+                    top_word = [i for i in words_list if i not in stopwords][0]
+                    orig_image_path = re.findall('\((.*?)\)', chat_history[0][0])[0].split('=')[1]
+                    filename = dino_sam(image_path=orig_image_path, text_prompt=top_word, \
+                                        output_dir='/temp/gradio/outputs', box_threshold=0.5, text_threshold=0.55)
+                    view_mask_filename = f'[View generated image with with large size.]({HTTPD_URL}outputs/{filename})'
+                    mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
+                    chat_history.append(
+                        [
+                            #f"{prompt_list_to_markdown(user_prompt_list + [view_mask_filename] + [mask_filename])}",
+                            f"{prompt_list_to_markdown(user_prompt_list)}",
+                            f"{mask_filename} {view_mask_filename}",
+                        ]
+                    )
+                elif ('generate image from image' in label.lower() and score >= 0.81 ):
+                    orig_image_path = re.findall('\((.*?)\)', chat_history[0][0])[0].split('=')[1]
+                    filename = image_gen(prompt=user_prompt_str, image_path=orig_image_path)
+                    if filename is not None:
+                        view_mask_filename = f' [View generated imagewith large sie.]({HTTPD_URL}outputs/{filename})'
+                        mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
+                        chat_history.append(
+                            [
+                                f"{prompt_list_to_markdown(user_prompt_list)}",
+                                f"{mask_filename} {view_mask_filename}",
+                            ]
+                        )
+                elif ('generate image from text' in label.lower() and score >= 0.81 ):
+                    filename = image_gen(prompt=user_prompt_str, image_path=None)
+                    if filename is not None:
                         view_mask_filename = f' [View generated image]({HTTPD_URL}outputs/{filename})'
                         mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
                         chat_history.append(
                             [
-                                f"{prompt_list_to_markdown(user_prompt_list + [view_mask_filename] + [mask_filename])}",
-                                '',
+                                f"{prompt_list_to_markdown(user_prompt_list)}",
+                                f"{mask_filename} {view_mask_filename}" 
                             ]
                         )
-                    else:
-                        if ('generate image from image' in label.lower() and score >= 0.60 ):
-                            orig_image_path = re.findall('\((.*?)\)', chat_history[0][0])[0].split('=')[1]
-                        filename = image_gen(prompt=user_prompt_str, image_path=orig_image_path)
-                        if filename is not None:
-                            view_mask_filename = f' [View generated image]({HTTPD_URL}outputs/{filename})'
-                            mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
-                            chat_history.append(
-                                [
-                                    f"{prompt_list_to_markdown(user_prompt_list + [view_mask_filename] + [mask_filename])}",
-                                    '',
-                                ]
-                            )
+                    yield "", None, chat_history
                 else:
                     chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
         else:
@@ -784,6 +793,7 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
                 ]
             )
 
+        
         query = prompt_list_to_tgi_input(formated_prompt_list)
         print(query)
         #query += cot_langchain_llama27b(user_prompt_str.strip())
@@ -792,7 +802,7 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
 
         acc_text = ""
         if mask_filename is not None:
-            chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
+            #chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
             yield "", None, chat_history
         else:
             for idx, response in enumerate(stream):
@@ -890,6 +900,53 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
             top_n = M.mclass(text_prompt=user_prompt_str, topics=['Others', 'Generate image from text', 'Generate image from image', 'Image segmentation'], top_k=1)
             for label, score in top_n:
                 print(f'With label: {label} and score: {score}')
+                if ('Image segmentation' in label and score >= 0.65 ):
+                    words_list = kw_model.extract_keywords(docs=user_prompt_str, keyphrase_ngram_range=(1,3))
+                    words_list = [*words_list[0],][0].split()
+                    print(f'{words_list} and with type {type(words_list)}')
+                    stopwords = ['mask', 'create', 'generate', 'image', 'cut', 'edge', 'picture', 'photo', 'segment', 'new', 'her', 'his', 'my', 'the', 'that', 'this']
+                    top_word = [i for i in words_list if i not in stopwords][0]
+                    orig_image_path = re.findall('\((.*?)\)', chat_history[0][0])[0].split('=')[1]
+                    filename = dino_sam(image_path=orig_image_path, text_prompt=top_word, \
+                                        output_dir='/temp/gradio/outputs', box_threshold=0.5, text_threshold=0.55)
+                    view_mask_filename = f' [View generated image with with large size.]({HTTPD_URL}outputs/{filename})'
+                    mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
+                    chat_history.append(
+                        [
+                            #f"{prompt_list_to_markdown(user_prompt_list + [view_mask_filename] + [mask_filename])}",
+                            f"{prompt_list_to_markdown(user_prompt_list)}",
+                            f"{mask_filename} {view_mask_filename}",
+                        ]
+                    )
+                elif ('generate image from image' in label.lower() and score >= 0.81 ):
+                    orig_image_path = re.findall('\((.*?)\)', chat_history[0][0])[0].split('=')[1]
+                    filename = image_gen(prompt=user_prompt_str, image_path=orig_image_path)
+                    if filename is not None:
+                        view_mask_filename = f' [View generated imagewith large sie.]({HTTPD_URL}outputs/{filename})'
+                        mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
+                        chat_history.append(
+                            [
+                                f"{prompt_list_to_markdown(user_prompt_list)}",
+                                f"{mask_filename} {view_mask_filename}",
+                            ]
+                        )
+                elif ('generate image from text' in label.lower() and score >= 0.81 ):
+                    filename = image_gen(prompt=user_prompt_str, image_path=None)
+                    if filename is not None:
+                        view_mask_filename = f' [View generated image]({HTTPD_URL}outputs/{filename})'
+                        mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
+                        chat_history.append(
+                            [
+                                f"{prompt_list_to_markdown(user_prompt_list)}",
+                                f"{mask_filename} {view_mask_filename}"
+                            ]
+                        )
+                    yield "", None, chat_history
+                else:
+                    chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
+            '''
+            for label, score in top_n:
+                print(f'With label: {label} and score: {score}')
                 if ('Others' not in label and score >=0.55): 
                     if ('Image segmentation' in label and score >= 0.65 ):
                         words_list = kw_model.extract_keywords(docs=user_prompt_str, keyphrase_ngram_range=(1,3))
@@ -921,32 +978,13 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
                                     '',
                                 ]
                             )
+                    yield "", None, chat_history
+            
                 else:
                     chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
             '''
-            words_list = kw_model.extract_keywords(docs=user_prompt_str, keyphrase_ngram_range=(1,3))
-            words_list = [*words_list[0],][0].split()
-            print(f'{words_list} and with type {type(words_list)}')
-            stopwords = ['mask', 'create', 'generate', 'image', 'cut', 'edge', 'picture', 'photo', 'segment', 'new', 'her', 'his', 'my', 'the', 'that', 'this']
-            top_word = [i for i in words_list if i not in stopwords][0]
-            if ("mask" in user_prompt_str.lower() or "segment" in user_prompt_str.lower()) and orig_image_path is not None:
-                print(f'Here {orig_image_path} with mask prompt {top_word} !')
-                filename = dino_sam(image_path=orig_image_path, text_prompt=top_word, output_dir='/temp/gradio/outputs', box_threshold=0.5, text_threshold=0.55)
-                view_mask_filename = f' [View generated image]({HTTPD_URL}outputs/{filename})'
-                mask_filename = f'![](/file=/tmp/gradio/outputs/{filename})'
-                chat_history.append(
-                    [
-                        #f"{prompt_list_to_markdown(user_prompt_list + ['[ -> Generated image](http://radaide.cavatar.info:8080/outputs/mask_filename)'])}",
-                        #OK f"{prompt_list_to_markdown(user_prompt_list + [mask_filename])}",
-                        f"{prompt_list_to_markdown(user_prompt_list + [view_mask_filename] + [mask_filename])}",
-                        #f"{'![](/file=/temp/gradio/outputs/{filename})'+ prompt_list_to_markdown(user_prompt_list)}",
-                        '',
-                    ]
-                )
-            else:
-               chat_history.append([prompt_list_to_markdown(user_prompt_list), ''])
-            '''
-        else:
+
+        elif mask_filename is None:
             # Case where the image is passed through the Image Box.
             # Convert the image into base64 for both passing it through the chat history and
             # displaying the image inside the same bubble as the text.
@@ -956,7 +994,7 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
                     '',
                 ]
             )
-
+   
         query = prompt_list_to_tgi_input(formated_prompt_list)
         stream = client.generate_stream(prompt=query, **generation_args)
 
