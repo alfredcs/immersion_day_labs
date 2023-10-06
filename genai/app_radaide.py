@@ -30,9 +30,11 @@ import random
 #SDXL
 import io, base64
 from PIL import Image
-from utils import bedrock
+#from utils import bedrock
+import botocore.config
 from io import BytesIO
 from base64 import b64encode
+import json
 
 ## CoT
 from langchain import PromptTemplate, LLMChain
@@ -68,6 +70,12 @@ MODELS = [
 ]
 
 API_PATHS = {
+    "local/idefics-9b-instruct": (
+        "http://infs.cavatar.info:8080"
+    ),
+}
+
+API_PATHS_2 = {
     "HuggingFaceM4/idefics-9b-instruct": (
         "https://api-inference.huggingface.co/models/HuggingFaceM4/idefics-9b-instruct"
     ),
@@ -80,26 +88,13 @@ API_PATHS = {
 }
 
 SYSTEM_PROMPT = [
-    """"The following is a conversation between a highly knowledgeable and intelligent visual AI assistant, called RadAide, and a human user, called User. In the following interactions, User and Assistant will converse in natural language, and RadAide will do its best to answer User’s questions. RadAide has the ability to perceive images and reason about the content of visual inputs. It can also process images by following precise instructs. RadAide was built to be respectful, polite and inclusive. It knows a lot, and always tells the truth. When prompted with an image, it does not make up facts. The conversation begins:""",
+    """"The following is a conversation between a highly knowledgeable and intelligent visual AI assistant, called RadAide, and a human user, called User. In the following interactions, User and Assistant will converse in natural language, and RadAide will do its best to answer User’s questions. RadAide has the ability to perceive images and reason about the content of visual inputs. It can also process images by following precise instructs. RadAide was built to be smart, respectful, polite and inclusive. When prompted with an image, it tells the truth and does not make up facts. The conversation begins:""",
     """\nUser:""",
     "https://miro.medium.com/v2/resize:fit:1332/0*yl2b-bDJeEwKPUI5"
     "Describe the nature of this image.<end_of_utterance>",
     """\RadAide: A tattooed person holding a sign that says, “Teach your children well,” in a crowd of people. In the middle of the sign, there’s an illustration of the earth with 2 raised fists on either side that have a rainbow pride square background, a trans pride circle background, and brown skin tone stripes on the fists. The raised fist is a symbol of solidarity and specifically Black power as popularized by the Black Panther Party in the 1960s. The rainbow pride flag has rainbow stripes and symbolizes general LGBTQ pride. The trans pride flag has pink, blue, and white stripes and celebrates pride for the trans and gender non-conforming umbrella.<end_of_utterance>""",
-    "\nUser:How about this image?",
-    "https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074_1280.jpg",
-    "Can you describe it too?<end_of_utterance>",
-    """\RadAide: A dog is lying on the floor, looking at the camera. It is looking directly at you. The dog has a white body and brown patches on its face and ears. Its eyes are dark. Its nose is black, and it has long, floppy ears, white paws, long fur, big eyes.<end_of_utterance>""",
-    "\nUser: What kind of breed is it?<end_of_utterance>",
-    """\RadAide: It looks like a Cavalier King Charles Spaniel. These breeds are known for their gentle, affectionate nature. Their long ears and big, brown eyes give them a sweet, expressive face. Cavaliers are small dogs weighing between 13 and 20 pounds. They have a silky, medium-length coat that comes in various colors, including black and tan, tricolor, red and white, or black.<end_of_utterance>""",
-    "\nUser: What can you tell me about this breed of dogs?<end_of_utterance>",
-    """\RadAide: One specific characteristic of the Cavalier King Charles Spaniel is its friendly and affectionate nature. This breed is known for being extremely sociable and forming strong bonds with their owners. They are often described as "velcro dogs" because they love to be close to their human companions, whether it's sitting on their laps, cuddling on the couch, or simply following them around the house.<end_of_utterance>""",
-    "\nUser: ghjkhjabnufs<end_of_utterance>",
-    """\RadAide: That doesn’t seem to be a word. Could you ask me another way?<end_of_utterance>""",
-    "\nUser: Do you like Cavalier King Charles Spaniel?<end_of_utterance>",
-    """\RadAide: I do not have personal opinions as I’m just a computer program. However, cavaliers are known for being excellent family pets due to their gentle and patient demeanor, making them great with children and other pets. Their affectionate nature also makes them ideal therapy dogs, as they can provide comfort and emotional support to those in need.<end_of_utterance>""",
     "\nUser: How many dogs do you see in this image?",
     "https://i.dailymail.co.uk/i/pix/2011/07/01/article-2010308-0CD22A8300000578-496_634x414.jpg",
-    "<end_of_utterance>",
     """\nAssistant: There is no dogs in this image. The picture shows a tennis player jumping to volley the ball.<end_of_utterance>""",
 ]
 
@@ -228,7 +223,8 @@ def dino_sam(image_path, text_prompt, text_threshold=0.4, box_threshold=0.5, out
 def image_gen(prompt: str, image_path: str) -> str:
     if prompt is None:
         return
-    boto3_bedrock = boto3.client(service_name='bedrock',region_name='us-east-1',endpoint_url='https://bedrock.us-east-1.amazonaws.com')
+    config = botocore.config.Config(connect_timeout=120, read_timeout=120)
+    boto3_bedrock_rt = boto3.client(service_name='bedrock-runtime', region_name='us-east-1', endpoint_url='https://bedrock.us-east-1.amazonaws.com', config=config)
     negative_prompts = [
         "poorly rendered", 
         "poor background details", 
@@ -238,11 +234,20 @@ def image_gen(prompt: str, image_path: str) -> str:
     ]
     style_preset = "photographic" # (photographic, digital-art, cinematic, ...)
     modelId = 'stability.stable-diffusion-xl'
-    model = bedrock.Bedrock(boto3_bedrock)
+    accept = 'application/json'
+    contentType = 'application/json'
+    body = json.dumps({"text_prompts": [{"text": prompt}],
+                       "cfg_scale": 5,
+                       "seed": 2325,
+                       "steps": 75,
+                       })
     rnum = random.randint(100, 2000)
 
     if image_path is None:
-        base_64_img_str = model.generate_image(prompt,  modelId=modelId, cfg_scale=5, seed=2143, steps=70, style_preset=style_preset)
+        response = boto3_bedrock_rt.invoke_model(body=body,modelId=modelId, accept=accept, contentType=contentType)
+        response_body = json.loads(response.get('body').read())
+        base_64_img_str = response_body['artifacts'][0]['base64']
+        #Old base_64_img_str = br_runtime_client.generate_image(prompt,  modelId=model_name, cfg_scale=5, seed=2143, steps=70, style_preset=style_preset)
         image_2 = Image.open(io.BytesIO(base64.decodebytes(bytes(base_64_img_str, "utf-8"))))
         image_2.save(f'/tmp/gradio/outputs/sdxl_{rnum}.jpg')
     else:
@@ -263,7 +268,22 @@ def image_gen(prompt: str, image_path: str) -> str:
         image_1.save(buffer, format="JPEG")
         img_bytes = buffer.getvalue()
         init_image = b64encode(img_bytes).decode()
-        base_64_img_str = model.generate_image(prompt, init_image=init_image, start_schedule=0.6, cfg_scale=5, seed=12345, steps=70, style_preset=style_preset)
+        body2 = json.dumps({
+                "text_prompts": (
+                [{"text": prompt, "weight": 1.0}]
+                + [{"text": negprompt, "weight": -1.0} for negprompt in negative_prompts]
+           ),
+            "cfg_scale": 10,
+            "init_image": init_image,
+            "seed": 129,
+            "start_schedule": 0.6,
+        "steps": 75,
+        "style_preset": style_preset,
+        })
+        response = boto3_bedrock_rt.invoke_model(body=body2, modelId=modelId)
+        response_body = json.loads(response.get('body').read())
+        base_64_img_str = response_body['artifacts'][0]['base64']
+        #base_64_img_str = model.generate_image(prompt, init_image=init_image, start_schedule=0.6, cfg_scale=5, seed=12345, steps=70, style_preset=style_preset)
         image_3 = Image.open(io.BytesIO(base64.decodebytes(bytes(base_64_img_str, "utf-8"))))
         image_3.save(f'/tmp/gradio/outputs/sdxl_{rnum}.jpg')
     return f'sdxl_{rnum}.jpg'
@@ -359,7 +379,7 @@ def cot_langchain_llama27b(query_string: str) -> str:
 
     llm_local = HuggingFaceTextGenInference(
         inference_server_url=inference_server_url_local,
-        max_new_tokens=200,
+        max_new_tokens=1024,
         top_k=5,
         top_p=0.96,
         typical_p=0.95,
@@ -1035,7 +1055,7 @@ with gr.Blocks(title="Multimodal Playground", theme=gr.themes.Base()) as demo:
         model_selector="local/idefics-9b-instruct"
         user_prompt_str=message
         chat_history=[]
-        max_new_tokens=512
+        max_new_tokens=1024
 
         formated_prompt_list, user_prompt_list = format_user_prompt_with_im_history_and_system_conditioning(
             current_user_prompt_str=user_prompt_str.strip(),
